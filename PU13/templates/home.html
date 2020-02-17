@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}
+Hjem
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h3>Velkommen til hjemsiden til StrikkDin!</h3>
+        {% if user.is_authenticated %}
+          <h3>Hei {{ user.username }}!</h3>
+            {% if user.is_User %}
+                <h3>Du er en registrert bruker!</h3>
+            {% else %}
+                <h3>Du er en registrert bedrift!</h3>
+            {% endif %}
+          <p><a href="{% url 'logout' %}">logout</a></p>
+        {% else %}
+
+          <a href="{% url 'login' %}">Login</a> |
+          <a href="{% url 'accounts:signup' %}">Sign Up</a>
+        {% endif %}
+    </div>
+{% endblock body %}
