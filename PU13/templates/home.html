@@ -14,14 +14,7 @@ Hjem
             {% else %}
                 <h3>Du er en registrert bedrift!</h3>
             {% endif %}
-        <p>Send melding til admin:</p>
-        <form method="post">{% csrf_token %}
 
-            {{form.as_p}}
-            <button type="submit", name="save">
-                Send
-            </button></form>
-          <p><a href="{% url 'logout' %}">logout</a></p>
         {% else %}
 
           <a href="{% url 'login' %}">Login</a> |

@@ -17,5 +17,5 @@ def home(response):
     else:
 
         form = SendMessageToAdmin()
-    return render(response, "home.html", {"form":form})
+    return render(response, "contactAdmin.html", {"form":form})
 
