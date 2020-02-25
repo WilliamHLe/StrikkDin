@@ -1,17 +1,67 @@
 <!-- templates/signup.html -->
 {% extends 'base.html' %}
 
+{% load widget_tweaks %}
+
 {% block title %}
 Registrer
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container w-50 mt-4 mb-4">
         <h2>Registrer</h2>
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
-            <button type="submit" class="btn btn-primary">Registrer</button>
-        </form>
+        <form method="post" novalidate>
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.username.label_tag }}
+                {% render_field form.username class="form-control" %}
+            </div>
+             <div class="form-group">
+                {{ form.name.label_tag }}
+                {% render_field form.name class="form-control" %}
+            </div>
+
+            <div class="form-group pb-3">
+                {{form.user_level.label_tag}}
+                {% render_field form.user_level class="custom-select" name="field" %}
+            </div>
+
+            <div class="form-group pb-3">
+                <div class="custom-control custom-radio custom-control-inline pt">
+                {% render_field form.is_User type="radio" id="customRadio1" name="customRadio" class="custom-control-input" %}
+              <label class="custom-control-label" for="customRadio1">User</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                {% render_field form.is_Company type="radio" id="customRadio2" name="customRadio" class="custom-control-input" %}
+              <label class="custom-control-label" for="customRadio2">Company</label>
+            </div>
+            </div>
+
+
+            <div class="form-group">
+                {{ form.password1.label_tag }}
+                {% render_field form.password1 class="form-control" %}
+            </div>
+            <div class="form-group pb-3">
+                {{ form.password2.label_tag }}
+                {% render_field form.password2 class="form-control" %}
+            </div>
+
+<!--            {% for field in form %}-->
+<!--              <div class="form-group">-->
+<!--                {{ field.label_tag }}-->
+
+<!--                {% render_field field class="form-control" %}-->
+
+<!--                {% if field.help_text %}-->
+<!--                  <small class="form-text text-muted">-->
+<!--                    {{ field.help_text }}-->
+<!--                  </small>-->
+<!--                {% endif %}-->
+<!--              </div>-->
+<!--            {% endfor %}-->
+
+            <button type="submit" class="btn btn-success">Registrer</button>
+          </form>
     </div>
 {% endblock body %}

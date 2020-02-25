@@ -4,7 +4,7 @@ Hjem
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container text-center mt-5">
 
         <h3>Velkommen til hjemsiden til StrikkDin!</h3>
         {% if user.is_authenticated %}
@@ -17,8 +17,8 @@ Hjem
 
         {% else %}
 
-          <a href="{% url 'login' %}">Login</a> |
-          <a href="{% url 'accounts:signup' %}">Sign Up</a>
+          <a href="{% url 'login' %}">Logg inn</a> |
+          <a href="{% url 'accounts:signup' %}">Registrer</a>
         {% endif %}
     </div>
 {% endblock body %}
