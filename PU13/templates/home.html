@@ -6,13 +6,14 @@ Hjem
 {% block body %}
     <div class="container text-center mt-5">
 
-        <h3>Velkommen til hjemsiden til StrikkDin!</h3>
+        <h3>Velkommen til StrikkDin, {{ user.username }}!</h3>
         {% if user.is_authenticated %}
-          <h3>Hei {{ user.username }}!</h3>
             {% if user.is_User %}
-                <h3>Du er en registrert bruker!</h3>
+                <h3>Du er registrert som en bruker</h3>
+            {% elif user.username == 'admin' %}
+                <h3>Du er registrert som admin</h3>
             {% else %}
-                <h3>Du er en registrert bedrift!</h3>
+                <h3>Du er registrert som en bedrift</h3>
             {% endif %}
 
         {% else %}
