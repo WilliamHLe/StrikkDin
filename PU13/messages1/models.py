@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.db import models
-
 
 class Messages1(models.Model):
     text_from = models.CharField(max_length=100, null=True)
