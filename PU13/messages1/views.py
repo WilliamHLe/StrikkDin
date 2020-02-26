@@ -8,9 +8,10 @@ def home(response):
     if response.method == "POST":
         form = SendMessageToAdmin(response.POST)
         if form.is_valid():
+            a = form.cleaned_data["text_from"]
             t = form.cleaned_data["subject"]
             d = form.cleaned_data["description"]
-            f = Messages1(subject=t, description=d)
+            f = Messages1(text_from=a, subject=t, description=d)
             f.save()
     else:
         form = SendMessageToAdmin()
