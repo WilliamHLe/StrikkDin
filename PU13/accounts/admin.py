@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
 from .models import CustomUser
 
+
 class MyUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
     form = MyUserChangeForm
@@ -12,7 +13,7 @@ class MyUserAdmin(UserAdmin):
     list_display = ['username', 'name', 'user_level', 'is_User', 'is_Company']
     fieldsets = UserAdmin.fieldsets + (
             (None, {'fields': ('name', 'user_level', 'is_User', 'is_Company')}),
-    ) #this will allow to change these fields in admin module
+    )  # this will allow to change these fields in admin module
 
 
 admin.site.register(CustomUser, MyUserAdmin)
