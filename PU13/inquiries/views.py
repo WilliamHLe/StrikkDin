@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from .forms import SendMessageToAdmin
-from .models import Messages1
+from .models import Inquiries
 
 from django.shortcuts import render, redirect
 #from django.http import HttpResponse, HttpResponseRedirect
@@ -17,7 +17,7 @@ def home(response):
             a = form.cleaned_data["text_from"]
             t = form.cleaned_data["subject"]
             d = form.cleaned_data["description"]
-            f = Messages1(text_from=a, subject=t, description=d)
+            f = Inquiries(text_from=a, subject=t, description=d)
             f.save()
             messages.success(response, 'Melding sendt!')
 
