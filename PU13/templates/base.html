@@ -21,10 +21,9 @@
               <a class="nav-item nav-link" href="{%  url 'messages1:kontakt' %}">Kontakt admin</a>
             </div>
               {% if user.is_authenticated %}
-
                   <div class="navbar-nav ml-auto">
                   <span class="navbar-text">
-                      Hei, {{ user.name }}
+                       {{ user.username }}
                     </span>
               <a class="nav-item nav-link" href="{%  url 'logout' %}">Logg ut</a>
             </div>
