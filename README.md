@@ -5,9 +5,11 @@ StrikkDin application
 ## Technology/framework
 * Python
 * Django
+* Bootstrap
+* SQLite
 
 ### Tests and code quality
-*  unittest
+* unittest
 
 ## Team Members
 * Andreas Torgersen
