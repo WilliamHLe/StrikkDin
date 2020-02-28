@@ -4,6 +4,12 @@ from django.shortcuts import render
 from .forms import SendMessageToAdmin
 from .models import Messages1
 
+from django.shortcuts import render, redirect
+#from django.http import HttpResponse, HttpResponseRedirect
+#from django.urls import reverse
+
+from django.contrib import messages
+
 def home(response):
     if response.method == "POST":
         form = SendMessageToAdmin(response.POST)
@@ -13,6 +19,13 @@ def home(response):
             d = form.cleaned_data["description"]
             f = Messages1(text_from=a, subject=t, description=d)
             f.save()
+            messages.success(response, 'Melding sendt!')
+
+            response = redirect('kontakt')
+            return response
+        else:
+            messages.error(response, 'Fyll ut alle feltene!!')
+
     else:
         form = SendMessageToAdmin()
 
