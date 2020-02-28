@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class Messages1(models.Model):
+class Inquiries(models.Model):
     text_from = models.CharField(max_length=100, null=True)
     subject = models.CharField(max_length=200)
     description = models.CharField(max_length=1000)
