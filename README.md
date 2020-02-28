@@ -8,7 +8,7 @@ StrikkDin application
 * Bootstrap
 * SQLite
 
-### Tests and code quality
+## Tests and code quality
 * unittest
 
 ## Team Members
