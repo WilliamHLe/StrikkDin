@@ -9,12 +9,12 @@ Hjem
         <h3>Velkommen til StrikkDin!</h3>
         <h3> {{user.name}} </h3>
         {% if user.is_authenticated %}
-            {% if user.is_User %}
-                <h3>Du er for tiden logget inn som en bruker</h3>
-            {% elif user.username == 'admin' %}
+            {% if user.is_Company %}
+                <h3>Du er logget inn som en bedrift</h3>
+            {% elif 'admin' in user.username %}
                 <h3>Du er for tiden logget inn som admin</h3>
             {% else %}
-                <h3>Du er logget inn som en bedrift</h3>
+                <h3>Du er for tiden logget inn som en bruker</h3>
             {% endif %}
 
         {% else %}
