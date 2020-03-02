@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
 from .models import CustomUser
 
-
+# Viser hvilke felter av modellen som skal vises i admin-siden
 class MyUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
     form = MyUserChangeForm
@@ -14,6 +14,6 @@ class MyUserAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
             (None, {'fields': ('name', 'user_level', 'is_Company')}),
     )  # this will allow to change these fields in admin module
-#Fjernet is_User fra fieldsets og list_display
+# Fjernet is_User fra fieldsets og list_display
 
 admin.site.register(CustomUser, MyUserAdmin)

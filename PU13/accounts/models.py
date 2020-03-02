@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-
+# Models for user, bruker Django sin innebygde User model
 class CustomUser(AbstractUser):
     is_User = models.BooleanField(default=False)
     is_Company = models.BooleanField(default=False)
