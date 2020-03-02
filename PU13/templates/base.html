@@ -1,0 +1,43 @@
+{% load static %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Hjem{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Peralta" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+    {% block stylesheet %}{% endblock %}  <!-- HERE -->
+  </head>
+  <body>
+    <main>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <a class="navbar-brand" href="{%  url 'home' %}">StrikkDin</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+             <!-- <a class="nav-item nav-link" href="{%  url 'home' %}">Hjem <span class="sr-only">(current)</span></a>-->
+              <a class="nav-item nav-link" href="{%  url 'inquiries:kontakt' %}">Kontakt admin</a>
+            </div>
+              {% if user.is_authenticated %}
+                  <div class="navbar-nav ml-auto">
+                  <span class="navbar-text">
+                       {{ user.username }}
+                    </span>
+              <a class="nav-item nav-link" href="{%  url 'logout' %}">Logg ut</a>
+            </div>
+              {% else %}
+              <div class="navbar-nav ml-auto">
+              <a class="nav-item nav-link" href="{%  url 'login' %}">Logg inn</a>
+              <a class="nav-item nav-link" href="{%  url 'accounts:signup' %}">Registrer</a>
+            </div>
+              {% endif %}
+          </div>
+        </nav>
+        {% block body %}
+
+        {% endblock body %}
+    </main>
+  </body>
+</html>
