@@ -25,19 +25,7 @@ class InquiriesTesting(TestCase):
         print(form.errors)
         self.assertTrue(form.is_valid())
 
-    def test_feedback_response(self):
-        message_form = {
-            'text_from': 'Vivi',
-            'subject': 'Hjelp',
-            'description': ''
-        }
-        form = SendMessageToAdmin(data=message_form)
-        print(form.errors)
-        response = self.client.post(self.kontakt_url, message_form)
 
-        print(response.wsgi_request)
-
-       # self.assertEquals('Melding sendt!',messages.success(response, 'Melding sendt!'))
         
 
 
