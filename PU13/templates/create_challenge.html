@@ -1,0 +1,33 @@
+<!-- templates/signup.html -->
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+Registrer
+{% endblock %}
+
+{% block body %}
+<div class="container w-50 mt-4 mb-4">
+    <h2>Opprett utfordring</h2>
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+
+            {% render_field field class="form-control" %}
+
+            {% if field.help_text %}
+            <small class="form-text text-muted">
+                {{ field.help_text }}
+            </small>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-success">Opprett</button>
+    </form>
+</div>
+{% endblock body %}

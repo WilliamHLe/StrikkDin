@@ -28,4 +28,7 @@ urlpatterns = [
     path('', include("inquiries.urls")),
     path('', include(('inquiries.urls', 'inquiries'))),
 
+    path('', include("arrangements.urls")),
+    path('', include(('arrangements.urls', 'arrangements'))),
+
 ]

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inquiries',
     'accounts',
-
+    'arrangements',
 
     'widget_tweaks',
 ]
