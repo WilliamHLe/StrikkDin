@@ -45,8 +45,31 @@ def create_challenge(request):
 
     return render(request, "create_challenge.html", {"form": form})
 
-# def home(request):
-#   return render(request, "challenge.html")
+def join_challenge(request):
+    current_user = request.user  # Get the currently logged in user
+    challengeid = Challenge.objects.get(pk=pk)
+
+    context = {}
+
+    # fetch the object related to passed id
+    obj = get_object_or_404(Challenge, challengeid)
+
+    # pass the object as instance in form
+    form = CreateChallenge(request.POST or None, instance=obj)
+
+    # save the data from the form and
+    # redirect to detail_view
+    if form.is_valid():
+        form.save()
+        return redirect('arr')
+
+        # add form dictionary to context
+    context["form"] = form
+
+    return render(request, "challenge_detail.html", context)
+
+def home(request):
+  return render(request, "my_page.html")
 
 # def create_challenge(request):
 #

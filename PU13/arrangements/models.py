@@ -11,5 +11,5 @@ class Challenge(models.Model):
     rec_user_level = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_by')
-    participants = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='participants',
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='participants',
                                      blank=True, null=True)

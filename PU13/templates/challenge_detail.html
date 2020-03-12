@@ -14,7 +14,22 @@ Kontakt admin
     <h5>Beskrivelse</h5>
     <p>{{ challenges.description }}</p>
 
-    <button type="button" class="btn btn-primary">Meld på</button>
+    <form method="post" novalidate>
+        {% csrf_token %}
+
+        {% for field in form %}
+        <div class="form-group">
+            {{ field.label_tag }}
+
+            {% render_field field class="form-control" %}
+
+
+        </div>
+        {% endfor %}
+
+       <button type="submit" class="btn btn-primary">Meld på</button>
+
+    </form>
 
 </div>
 {% endblock body %}
