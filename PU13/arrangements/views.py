@@ -8,13 +8,13 @@ from .forms import CreateChallenge
 
 # Show a table of challenges
 def challengeView(request):
-    challenges = Challenge.objects.all()
+    challenges = Challenge.objects.all()  # Get all the challenges in the database
     return render(request, 'challenge.html', {'challenges': challenges})
 
 
 # Shows a detailed view of the challenge
 def challenge_detail(request, pk):
-    challenges = Challenge.objects.get(pk=pk)
+    challenges = Challenge.objects.get(pk=pk)  # Using the primary key/ID to get the requested challenge
     context = {
         'challenges': challenges
     }
@@ -45,6 +45,8 @@ def create_challenge(request):
 
     return render(request, "create_challenge.html", {"form": form})
 
+
+# Funker ikke enda
 def join_challenge(request):
     current_user = request.user  # Get the currently logged in user
     challengeid = Challenge.objects.get(pk=pk)
