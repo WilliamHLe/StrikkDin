@@ -10,12 +10,17 @@ from django.views.generic import UpdateView
 # Show a table of challenges
 def challengeView(request):
     challenges = Challenge.objects.all()  # Get all the challenges in the database
-    return render(request, 'challenge.html', {'challenges': challenges})
+
+    context = {
+        'challenges': challenges,
+    }
+    return render(request, 'challenge.html', context)
 
 
 # Shows a detailed view of the challenge
 def challenge_detail(request, pk):
     challenges = Challenge.objects.get(pk=pk)  # Using the primary key/ID to get the requested challenge
+    count = Challenge.objects.values('participants').filter(pk=pk).exclude(participants__isnull=True).count()
     current_user = request.user
 
     if request.method == "POST":
@@ -24,7 +29,8 @@ def challenge_detail(request, pk):
         messages.success(request, 'Du er påmeldt!')
 
     context = {
-        'challenges': challenges
+        'challenges': challenges,
+        'count': count
     }
     return render(request, 'challenge_detail.html', context)
 
@@ -57,7 +63,18 @@ def create_challenge(request):
 def my_page(request):
     mychallenges = Challenge.objects.filter(
         participants=request.user)  # Get all the challenges which have the logged in user as a participant
+
     return render(request, "my_page.html", {'mychallenges': mychallenges})
+
+
+def deregister_challenge(request, pk):
+    # Deregister from a challenge
+    challenges = Challenge.objects.get(pk=pk)
+    challenges.save()
+    challenges.participants.remove(request.user)  # Add the current logged in user to participants
+    messages.success(request, 'Du er avmeldt!')
+
+    return redirect("my_page")
 
 # def create_challenge(request):
 #

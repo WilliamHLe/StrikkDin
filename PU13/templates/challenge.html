@@ -15,6 +15,7 @@ Kontakt admin
             <th scope="col">Anbefalt brukernivå</th>
             <th scope="col">Opprettet</th>
             <th scope="col">Arrangør</th>
+
             {% if user.is_authenticated %}
 
             <th scope="col"><a href="{% url 'create_challenge' %}"

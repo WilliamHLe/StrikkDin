@@ -30,6 +30,7 @@ Registrer
                             <th scope="col">Opprettet</th>
                             <th scope="col">Arrangør</th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
 
 
                         </tr>
@@ -47,7 +48,10 @@ Registrer
                                    class="btn btn-primary">
                                 Les mer
                             </a></td>
-
+                            <td><a href="{% url 'delete' challenge.pk %}"
+                                   class="btn btn-danger">
+                                Avmeld
+                            </a></td>
 
                         </tr>
 

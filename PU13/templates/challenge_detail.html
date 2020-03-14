@@ -19,6 +19,8 @@ Kontakt admin
     <p>{{ challenges.challenge_name }}</p>
     <h5>Beskrivelse</h5>
     <p>{{ challenges.description }}</p>
+    <h5>Påmeldte</h5>
+    <p>{{ count }}</p>
 
     <form method="post" novalidate>
         {% csrf_token %}
