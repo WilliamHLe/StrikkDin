@@ -20,7 +20,7 @@ def challenge_detail(request, pk):
 
     if request.method == "POST":
         challenges.save()
-        challenges.participants.add(current_user)
+        challenges.participants.add(current_user)  # Add the current logged in user to participants
         messages.success(request, 'Du er påmeldt!')
 
     context = {
@@ -55,7 +55,9 @@ def create_challenge(request):
 
 
 def my_page(request):
-    return render(request, "my_page.html")
+    mychallenges = Challenge.objects.filter(
+        participants=request.user)  # Get all the challenges which have the logged in user as a participant
+    return render(request, "my_page.html", {'mychallenges': mychallenges})
 
 # def create_challenge(request):
 #
