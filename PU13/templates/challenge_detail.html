@@ -8,7 +8,13 @@ Kontakt admin
 
 {% block body %}
 <div class="container w-50 mt-4 pt-5">
-
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
     <h5>Utfordring</h5>
     <p>{{ challenges.challenge_name }}</p>
     <h5>Beskrivelse</h5>

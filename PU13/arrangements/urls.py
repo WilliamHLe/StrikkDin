@@ -7,6 +7,6 @@ urlpatterns = [
 
     # Link to detailed challenge view based on challenge ID
     path("arr/create/", views.create_challenge, name="create_challenge"),
-    path("minside/", views.home, name="my_page"),
+    path("minside/", views.my_page, name="my_page"),
 
 ]

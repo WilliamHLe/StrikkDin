@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Challenge
 from django.contrib import messages
 from .forms import CreateChallenge
+from django.views.generic import UpdateView
 
 
 # Show a table of challenges
@@ -15,6 +16,13 @@ def challengeView(request):
 # Shows a detailed view of the challenge
 def challenge_detail(request, pk):
     challenges = Challenge.objects.get(pk=pk)  # Using the primary key/ID to get the requested challenge
+    current_user = request.user
+
+    if request.method == "POST":
+        challenges.save()
+        challenges.participants.add(current_user)
+        messages.success(request, 'Du er påmeldt!')
+
     context = {
         'challenges': challenges
     }
@@ -46,32 +54,8 @@ def create_challenge(request):
     return render(request, "create_challenge.html", {"form": form})
 
 
-# Funker ikke enda
-def join_challenge(request):
-    current_user = request.user  # Get the currently logged in user
-    challengeid = Challenge.objects.get(pk=pk)
-
-    context = {}
-
-    # fetch the object related to passed id
-    obj = get_object_or_404(Challenge, challengeid)
-
-    # pass the object as instance in form
-    form = CreateChallenge(request.POST or None, instance=obj)
-
-    # save the data from the form and
-    # redirect to detail_view
-    if form.is_valid():
-        form.save()
-        return redirect('arr')
-
-        # add form dictionary to context
-    context["form"] = form
-
-    return render(request, "challenge_detail.html", context)
-
-def home(request):
-  return render(request, "my_page.html")
+def my_page(request):
+    return render(request, "my_page.html")
 
 # def create_challenge(request):
 #
@@ -95,6 +79,38 @@ def home(request):
 #         return redirect('arr')  # TODO: redirect to the created topic page
 #
 #     return render(request, 'create_challenge.html', context)
+
+
+# # Funker ikke enda
+# def join_challenge(request):
+#     current_user = request.user  # Get the currently logged in user
+#     challengeid = Challenge.objects.get(pk=pk)
+#
+#     context = {}
+#
+#     # fetch the object related to passed id
+#     obj = get_object_or_404(Challenge, challengeid)
+#
+#     # pass the object as instance in form
+#     form = CreateChallenge(request.POST or None, instance=obj)
+#
+#     # save the data from the form and
+#     # redirect to detail_view
+#     if form.is_valid():
+#         b = current_user
+#         form = Challenge(participants=b)
+#         form.save()
+#         messages.success(request, 'Melding sendt!')
+#         return redirect('arr')
+#
+#     else:
+#         messages.error(request, 'Fyll ut alle feltene!!')
+#
+#         # add form dictionary to context
+#     context["form"] = form
+#
+#     return render(request, "challenge_detail.html", context)
+
 
 # challenges_names = list()
 #
