@@ -1,7 +1,4 @@
-import datetime
-import unittest
 
-from django.db.models import DateField
 from django.test import TestCase, Client
 from django.urls import reverse, resolve
 
@@ -11,7 +8,7 @@ from .forms import SendMessageToAdmin
 from .models import Inquiries
 import json
 
-
+""""
 class InquiriesTesting(TestCase):
     @classmethod
     def setUp(self):
@@ -19,9 +16,7 @@ class InquiriesTesting(TestCase):
 
     # tester at url-en er riktig.
 
-    def test_kontakt_url_resolves(self):
-        url = reverse("kontakt")
-        self.assertEquals(resolve(url).func, home)
+    
 
     # tester at lovlig input passerxer gjennom
     def test_valid_input_test(self):
@@ -34,9 +29,10 @@ class InquiriesTesting(TestCase):
         print(form.errors)
         self.assertTrue(form.is_valid())
 
+"""
 
-class TestViews(TestCase):
 
+class TestThisShit(TestCase):
     def setUp(self):
         self.client = Client()
         self.kontakt_url = "/kontakt/"
@@ -46,6 +42,15 @@ class TestViews(TestCase):
             description="hjklkjh",
             created_at=0
         )
+
+    def test_kontakt_url_resolves(self):
+        url = reverse("kontakt")
+        self.assertEquals(resolve(url).func, home)
+
+
+
+
+
 
     # Tester det å fylle ut skjemaet
     def test_inquiries_home_POST_add_new_message(self):
@@ -60,9 +65,32 @@ class TestViews(TestCase):
 
         self.assertEquals(response.status_code, 302)
 
-
-
         # Under vises metoden for å teste get-request
         # response = self.client.get(reverse(self.kontakt_url))
         # self.assertEquals(response.status_code, 200)
         # self.assertTemplateUsed(response, "contactAdmin.html")
+
+    def test_inquiries_home_POST_nothing(self):
+        response = self.client.post(self.kontakt_url)
+
+        self.assertEquals(response.status_code, 200)
+
+
+    def test_valid_data(self):
+        form = SendMessageToAdmin(data={
+            "text_from": "Andreas",
+            "subject": "Trenger hjelp med å legge ut annonse",
+            "description": "Når jeg logger inn så får jeg masse feil med bla bla bla."
+        }
+
+
+        )
+        self.assertTrue(form.is_valid())
+
+    def test_not_valid_data(self):
+        form = SendMessageToAdmin(data={
+            "text_from": "",
+            "subject": "",
+            "description": ""
+        })
+        self.assertFalse(form.is_valid())
