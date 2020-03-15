@@ -18,7 +18,7 @@ Kontakt admin
             <th scope="col">Opprettet</th>
             <th scope="col">Arrangør</th>
 
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and user.is_Company %}
 
             <th scope="col"><a href="{% url 'create_challenge' %}"
                                class="btn btn-success">
