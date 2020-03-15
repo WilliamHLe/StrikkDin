@@ -6,7 +6,8 @@ from .models import CustomUser
 
 # Viser hva registreringsskjemaet skal inneholde
 class MyUserCreationForm(UserCreationForm):
-    choi = (('Nybegynner', 'Nybegynner'), ('Erfaren', 'Erfaren'), ('Proff', 'Proff'),)
+    choi = (('Nybegynner', 'Nybegynner'), ('Amatør', 'Amatør'), ('Erfaren', 'Erfaren'), ('Proff', 'Proff'),
+            ('Legende', 'Legende'),)
     user_level = forms.ChoiceField(choices=choi)
 
     class Meta(UserCreationForm):
