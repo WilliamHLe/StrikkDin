@@ -9,6 +9,13 @@ Registrer
 {% block body %}
 <div class="container w-50 mt-4 mb-4 pt-4">
     <h1>Min side</h1>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
     <div class="accordion pt-5" id="accordionExample">
         <div class="card">
             <div class="card-header" id="headingOne">
@@ -31,6 +38,7 @@ Registrer
                             <th scope="col">Arrangør</th>
                             <th scope="col"></th>
                             <th scope="col"></th>
+                            <th scope="col"></th>
 
 
                         </tr>
@@ -48,10 +56,15 @@ Registrer
                                    class="btn btn-primary">
                                 Les mer
                             </a></td>
+                            <td><a href="{% url 'complete'  %}"
+                                   class="btn btn-success">
+                                Fullført
+                            </a></td>
                             <td><a href="{% url 'delete' challenge.pk %}"
                                    class="btn btn-danger">
                                 Avmeld
                             </a></td>
+
 
                         </tr>
 

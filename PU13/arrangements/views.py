@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Challenge
 from django.contrib import messages
 from .forms import CreateChallenge
+from accounts.models import CustomUser
+from django.db.models import F
 
 
 # Show a table of challenges
@@ -74,9 +76,19 @@ def my_page(request):
     return render(request, "my_page.html", {'mychallenges': mychallenges})
 
 
+# When user click on complete challenge
+def complete_challenge(request):
+    us = request.user
+    challenges = CustomUser.objects.values('completed_challenges').filter(
+        username=us)  # Get the value of completed challenges based on username
+    challenges.update(completed_challenges=F('completed_challenges') + 1)  # Increment the completed challenges by 1
 
+    # for challenge in challenges:
+    #     val = challenge['completed_challenges']
+    #     chall = CustomUser.objects.values('completed_challenges').filter(username=us)
 
-
+    messages.success(request, 'Du har fullført utfordringen!')
+    return redirect("my_page")
 
 # def join_challenge(request):
 #     current_user = request.user  # Get the currently logged in user

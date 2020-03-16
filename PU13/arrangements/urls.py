@@ -10,5 +10,5 @@ urlpatterns = [
 
     path("minside/", views.my_page, name="my_page"),
     path("minside/<int:pk>/", views.deregister_challenge, name="delete"),
-
+    path("minside/d", views.complete_challenge, name="complete"),
 ]
