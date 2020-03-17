@@ -22,9 +22,10 @@
             </div>
               {% if user.is_authenticated %}
                   <div class="navbar-nav ml-auto">
-                  <span class="navbar-text">
+                  <!-- <span class="navbar-text">
                        {{ user.username }}
-                    </span>
+                    </span> -->
+                      <a class="nav-item nav-link" href="{%  url 'personal_feed' %}">{{ user.username }}</a>
               <a class="nav-item nav-link" href="{%  url 'logout' %}">Logg ut</a>
             </div>
               {% else %}
