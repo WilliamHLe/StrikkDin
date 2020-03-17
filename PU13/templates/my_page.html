@@ -100,19 +100,19 @@ Registrer
                         </tr>
                         </thead>
                         <tbody>
-                        {% for challenge in myknit %}
+                        {% for knit in myknit %}
 
 
                         <tr>
-                            <th scope="row">{{ challenge.knit_name }}</th>
-                            <td>{{ challenge.time }}</td>
-                            <td>{{ challenge.created_at }}</td>
-                            <td>{{ challenge.created_by }}</td>
-                            <td><a href="{% url 'knit_detail' challenge.pk %}"
+                            <th scope="row">{{ knit.knit_name }}</th>
+                            <td>{{ knit.time }}</td>
+                            <td>{{ knit.created_at }}</td>
+                            <td>{{ knit.created_by }}</td>
+                            <td><a href="{% url 'knit_detail' knit.pk %}"
                                    class="btn btn-primary">
                                 Les mer
                             </a></td>
-                            <td><a href="{% url 'delete' challenge.pk %}"
+                            <td><a href="{% url 'delete_knit' knit.pk %}"
                                    class="btn btn-danger">
                                 Avmeld
                             </a></td>

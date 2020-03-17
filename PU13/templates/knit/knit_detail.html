@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block title %}
-{{ challenges.challenge_name }}
+{{ knit.knit_name }}
 {% endblock %}
 
 {% block body %}
 <div class="container w-50 mt-4 pt-5">
-    <h1>{{ challenges.challenge_name }}</h1>
+    <h1>{{ knit.challenge_name }}</h1>
     {% if messages %}
     {% for message in messages %}
     <div class="alert {{ message.tags }} alert-dismissible" role="alert">
@@ -25,11 +25,11 @@
         </div>
         <div class="col">
             <h5>Strikkekveld</h5>
-            <p>{{ challenges.knit_name }}</p>
+            <p>{{ knit.knit_name }}</p>
             <h5>Tidspunkt</h5>
-            <p>{{ challenges.time }}</p>
+            <p>{{ knit.time }}</p>
             <h5>Beskrivelse</h5>
-            <p>{{ challenges.description }}</p>
+            <p>{{ knit.description }}</p>
             <h5>Påmeldte</h5>
             <p>{{ count }}</p>
             <form method="post" novalidate>
