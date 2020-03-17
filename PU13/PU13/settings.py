@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'inquiries',
     'accounts',
     'personal_feed',
-
+    'arrangements',
 
     'widget_tweaks',
 ]

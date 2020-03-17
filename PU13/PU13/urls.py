@@ -35,4 +35,7 @@ urlpatterns = [
 
     path('personal_feed/', include('personal_feed.urls'))
 
+    path('', include("arrangements.urls")),
+    path('', include(('arrangements.urls', 'arrangements'))),
+
 ]
