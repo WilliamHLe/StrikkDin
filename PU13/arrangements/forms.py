@@ -15,4 +15,5 @@ class CreateChallenge(forms.Form):
 class CreateKnit(forms.Form):
     knit_name = forms.CharField(label="Strikkekveld", max_length="200")
     time = forms.DateTimeField(label="Tidspunkt (yyyy-mm-dd)")
+    time_start = forms.TimeField(label="Tidspunkt (yyyy-mm-dd)")
     description = forms.CharField(widget=forms.Textarea, label="Beskrivelse", max_length="500")

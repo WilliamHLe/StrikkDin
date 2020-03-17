@@ -36,7 +36,7 @@ Kontakt admin
         <tr>
             <th scope="row">{{ challenge.challenge_name }}</th>
             <td>{{ challenge.rec_user_level }}</td>
-            <td>{{ challenge.created_at }}</td>
+            <td>{{ challenge.created_at |date:"d. M. Y"}}</td>
             <td>{{ challenge.created_by }}</td>
             <td><a href="{% url 'challenge_detail' challenge.pk %}"
                    class="btn btn-primary">

@@ -14,6 +14,7 @@ Kontakt admin
         <thead class="thead-dark">
         <tr>
             <th scope="col">Strikkekveld</th>
+            <th scope="col">Dato</th>
             <th scope="col">Tid</th>
             <th scope="col">Opprettet</th>
             <th scope="col">Arrangør</th>
@@ -35,8 +36,9 @@ Kontakt admin
 
         <tr>
             <th scope="row">{{ challenge.knit_name }}</th>
-            <td>{{ challenge.time }}</td>
-            <td>{{ challenge.created_at }}</td>
+            <td>{{ challenge.time|date:"d. M. Y" }}</td>
+            <td>{{ challenge.time_start |time:"H:i"}}</td>
+            <td>{{ challenge.created_at |date:"d. M. Y"}}</td>
             <td>{{ challenge.created_by }}</td>
             <td><a href="{% url 'knit_detail' challenge.pk %}"
                    class="btn btn-primary">

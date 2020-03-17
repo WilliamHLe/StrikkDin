@@ -141,8 +141,9 @@ def create_knit(request):
             b = current_user
             a = form.cleaned_data["knit_name"]
             t = form.cleaned_data["description"]
-            d = form.cleaned_data["time"]
-            f = KnitNight(created_by=b, knit_name=a, description=t, time=d)
+            d = form.cleaned_data["time_start"]
+            e = form.cleaned_data["time"]
+            f = KnitNight(created_by=b, knit_name=a, description=t, time=e, time_start=d)
             f.save()
 
             return redirect('knit')

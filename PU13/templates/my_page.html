@@ -50,7 +50,7 @@ Registrer
                         <tr>
                             <th scope="row">{{ challenge.challenge_name }}</th>
                             <td>{{ challenge.rec_user_level }}</td>
-                            <td>{{ challenge.created_at }}</td>
+                            <td>{{ challenge.created_at |date:"d. M. Y" }}</td>
                             <td>{{ challenge.created_by }}</td>
                             <td><a href="{% url 'challenge_detail' challenge.pk %}"
                                    class="btn btn-primary">
@@ -89,10 +89,10 @@ Registrer
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">Strikkekveld</th>
+                            <th scope="col">Dato</th>
                             <th scope="col">Tid</th>
                             <th scope="col">Opprettet</th>
                             <th scope="col">Arrangør</th>
-                            <th scope="col"></th>
                             <th scope="col"></th>
                             <th scope="col"></th>
 
@@ -105,8 +105,9 @@ Registrer
 
                         <tr>
                             <th scope="row">{{ knit.knit_name }}</th>
-                            <td>{{ knit.time }}</td>
-                            <td>{{ knit.created_at }}</td>
+                            <td>{{ knit.time |date:"d. M. Y" }}</td>
+                            <td>{{ knit.time_start |time:"H:i"}}</td>
+                            <td>{{ knit.created_at |date:"d. M. Y" }}</td>
                             <td>{{ knit.created_by }}</td>
                             <td><a href="{% url 'knit_detail' knit.pk %}"
                                    class="btn btn-primary">
@@ -131,7 +132,7 @@ Registrer
                 <h2 class="mb-0">
                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
                             data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Mine strikkekvelder
+                        Mine annonser
                     </button>
                 </h2>
             </div>
