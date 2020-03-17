@@ -13,3 +13,13 @@ class Challenge(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_by')
     participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='participants',
                                           blank=True)
+
+
+class KnitNight(models.Model):
+    knit_name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    time = models.DateTimeField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_by1')
+    participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='participants1',
+                                          blank=True)

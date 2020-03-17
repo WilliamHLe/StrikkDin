@@ -85,7 +85,44 @@ Registrer
             </div>
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body">
-                    Ingen ting enda
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Strikkekveld</th>
+                            <th scope="col">Tid</th>
+                            <th scope="col">Opprettet</th>
+                            <th scope="col">Arrangør</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for challenge in myknit %}
+
+
+                        <tr>
+                            <th scope="row">{{ challenge.knit_name }}</th>
+                            <td>{{ challenge.time }}</td>
+                            <td>{{ challenge.created_at }}</td>
+                            <td>{{ challenge.created_by }}</td>
+                            <td><a href="{% url 'knit_detail' challenge.pk %}"
+                                   class="btn btn-primary">
+                                Les mer
+                            </a></td>
+                            <td><a href="{% url 'delete' challenge.pk %}"
+                                   class="btn btn-danger">
+                                Avmeld
+                            </a></td>
+
+
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

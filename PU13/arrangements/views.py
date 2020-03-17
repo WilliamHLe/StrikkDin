@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Challenge
+from .models import Challenge, KnitNight
 from django.contrib import messages
-from .forms import CreateChallenge
+from .forms import CreateChallenge, CreateKnit
 from accounts.models import CustomUser
 from django.db.models import F
 
@@ -72,8 +72,14 @@ def deregister_challenge(request, pk):
 def my_page(request):
     mychallenges = Challenge.objects.filter(
         participants=request.user)  # Get all the challenges which have the logged in user as a participant
+    myknit = KnitNight.objects.filter(
+        participants=request.user)  # Get all the challenges which have the logged in user as a participant
 
-    return render(request, "my_page.html", {'mychallenges': mychallenges})
+    context = {
+        'mychallenges': mychallenges,
+        'myknit': myknit,
+    }
+    return render(request, "my_page.html", context)
 
 
 # When user click on complete challenge
@@ -89,6 +95,57 @@ def complete_challenge(request):
 
     messages.success(request, 'Du har fullført utfordringen!')
     return redirect("my_page")
+
+
+def knitView(request):
+    knit = KnitNight.objects.all()  # Get all the challenges in the database
+
+    context = {
+        'knit': knit,
+    }
+    return render(request, 'knit/knit.html', context)
+
+
+# Shows a detailed view of the challenge
+def knit_detail(request, pk):
+    challenges = KnitNight.objects.get(pk=pk)  # Using the primary key/ID to get the requested challenge
+    count = KnitNight.objects.values('participants').filter(pk=pk).exclude(
+        participants__isnull=True).count()  # Counts the participants for a challenge
+    current_user = request.user
+
+    if request.method == "POST":
+        challenges.save()
+        challenges.participants.add(current_user)  # Add the current logged in user to participants
+        messages.success(request, 'Du er påmeldt!')
+
+    context = {
+        'challenges': challenges,
+        'count': count
+    }
+    return render(request, 'knit/knit_detail.html', context)
+
+
+# Create challenge
+def create_knit(request):
+    current_user = request.user  # Get the currently logged in user
+    if request.method == "POST":
+        form = CreateKnit(request.POST)
+        if form.is_valid():
+            b = current_user
+            a = form.cleaned_data["knit_name"]
+            t = form.cleaned_data["description"]
+            d = form.cleaned_data["time"]
+            f = KnitNight(created_by=b, knit_name=a, description=t, time=d)
+            f.save()
+
+            return redirect('knit')
+        else:
+            messages.error(request, 'Fyll ut alle feltene!!')
+
+    else:
+        form = CreateKnit()
+
+    return render(request, "knit/create_knit.html", {"form": form})
 
 # def join_challenge(request):
 #     current_user = request.user  # Get the currently logged in user
