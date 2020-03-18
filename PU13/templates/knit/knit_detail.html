@@ -4,12 +4,12 @@
 {% load static %}
 
 {% block title %}
-Kontakt admin
+{{ knit.knit_name }}
 {% endblock %}
 
 {% block body %}
 <div class="container w-50 mt-4 pt-5">
-    <h1>{{ challenges.challenge_name }}</h1>
+    <h1>{{ knit.knit_name }}</h1>
     {% if messages %}
     {% for message in messages %}
     <div class="alert {{ message.tags }} alert-dismissible" role="alert">
@@ -21,13 +21,17 @@ Kontakt admin
     {% endif %}
     <div class="row pt-5">
         <div class="col">
-            <img src="{% static " media/garn.jpg" %}" class="img-fluid w-75 pt-3" alt="Responsive image">
+            <img src="{% static 'media/knit-night.jpg' %}" class="img-fluid w-75 pt-3" alt="Responsive image">
         </div>
         <div class="col">
-            <h5>Utfordring</h5>
-            <p>{{ challenges.challenge_name }}</p>
+            <h5>Strikkekveld</h5>
+            <p>{{ knit.knit_name }}</p>
+            <h5>Dato</h5>
+            <p>{{ knit.time |date:"d. M. Y"}}</p>
+            <h5>Tid</h5>
+            <p>{{ knit.time_start |time:"H:i"}}</p>
             <h5>Beskrivelse</h5>
-            <p>{{ challenges.description }}</p>
+            <p>{{ knit.description }}</p>
             <h5>Påmeldte</h5>
             <p>{{ count }}</p>
             <form method="post" novalidate>
