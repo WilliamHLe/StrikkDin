@@ -56,8 +56,16 @@ class TestUrls(TestCase):
     # def test_complete_challenge_url_resolves(self):
 
 
-#class ArrangementsTesting(TestCase):
+class ArrangementsTesting(TestCase):
 
-#    @classmethod
-#    def setUp(self):
-#        Challenge
+    @classmethod
+    def setUp(self):
+        self.client = Client()
+        self.challenge_detail = Challenge.objects.create(
+            challenge_name= "Vanlig_challenge",
+            description = "Vanlig",
+            rec_user_level = "Nybegynner",
+            created_at = 0,
+            created_by = "anders",
+        )
+
