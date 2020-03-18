@@ -7,6 +7,9 @@ from .forms import MyUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
 
 class SignUpView(SuccessMessageMixin, CreateView):
+    """SuccessMessageMixin støtter class-based-views til å håndtere suksessmeldinger på vellykde forms.
+       Bruker variabelen 'sucess_message' til å skrive ut meldingen. """
+
     form_class = MyUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
