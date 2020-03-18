@@ -7,14 +7,16 @@ from .models import CustomUser
 
 
 class MyUserAdmin(UserAdmin):
-    """UserAdmin er en Django-klasse som inneholder ferdig-implementerte attributter og funksjoner.
-       Det gir allerede generiske funksjonaliteter knyttet til hva en Admin kan gjøre.
-       Ctrl + left-click på UserAdmin for å se hvordan klassen UserAdmin ser ut.
+    """
+    UserAdmin er en Django-klasse som inneholder ferdig-implementerte attributter og funksjoner.
+    Det gir allerede generiske funksjonaliteter knyttet til hva en Admin kan gjøre.
+    Ctrl + left-click på UserAdmin for å se hvordan klassen UserAdmin ser ut.
 
-       Attributtene 'add_form' og 'form' referer til vår egendefinerte forms (accounts/forms.py).
-       Det samme gjør 'model' som knyttes til CustomUser (accounts/models.py).
-       List_display viser hvilket felter som synliggjøres på Admin-apnelet.
-       Fieldsets legger til ekstra felter for Admin-kontoen som ikke eksisterer i en generisk Admin-konto. """
+    Attributtene 'add_form' og 'form' referer til vår egendefinerte forms (accounts/forms.py).
+    Det samme gjør 'model' som knyttes til CustomUser (accounts/models.py).
+    List_display viser hvilket felter som synliggjøres på Admin-apnelet.
+    Fieldsets legger til ekstra felter for Admin-kontoen som ikke eksisterer i en generisk Admin-konto.
+    """
 
     add_form = MyUserCreationForm
     form = MyUserChangeForm
