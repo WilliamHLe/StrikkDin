@@ -31,7 +31,7 @@ def challengeView(request):
 
 # Shows a detailed view of the challenge
 def challenge_detail(request, pk):
-    challenges = Challenge.objects.get(pk=pk)  # Using the primary key/ID to get the requested challenge
+    challenges = Challenge.objects.get(pk=pk) # Using the primary key/ID to get the requested challenge
     count = Challenge.objects.values('participants').filter(pk=pk).exclude(
         participants__isnull=True).count()  # Counts the participants for a challenge
     current_user = request.user
