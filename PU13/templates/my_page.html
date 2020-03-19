@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block title %}
+Registrer
+{% endblock %}
+
+{% block body %}
+<div class="container w-50 mt-4 mb-4 pt-4">
+    <h1>Min side</h1>
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        </button>
+        {{ message }}
+    </div>
+    {% endfor %}
+    <div class="accordion pt-5" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        Påmeldte utfordringer
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Utfordring</th>
+                            <th scope="col">Anbefalt brukernivå</th>
+                            <th scope="col">Opprettet</th>
+                            <th scope="col">Arrangør</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for challenge in mychallenges %}
+
+
+                        <tr>
+                            <th scope="row">{{ challenge.challenge_name }}</th>
+                            <td>{{ challenge.rec_user_level }}</td>
+                            <td>{{ challenge.created_at |date:"d. M. Y" }}</td>
+                            <td>{{ challenge.created_by }}</td>
+                            <td><a href="{% url 'challenge_detail' challenge.pk %}"
+                                   class="btn btn-primary">
+                                Les mer
+                            </a></td>
+                            <td><a href="{% url 'complete'  %}"
+                                   class="btn btn-success">
+                                Fullført
+                            </a></td>
+                            <td><a href="{% url 'delete' challenge.pk %}"
+                                   class="btn btn-danger">
+                                Avmeld
+                            </a></td>
+
+
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Påmeldte strikkekvelder
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Strikkekveld</th>
+                            <th scope="col">Dato</th>
+                            <th scope="col">Tid</th>
+                            <th scope="col">Opprettet</th>
+                            <th scope="col">Arrangør</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for knit in myknit %}
+
+
+                        <tr>
+                            <th scope="row">{{ knit.knit_name }}</th>
+                            <td>{{ knit.time |date:"d. M. Y" }}</td>
+                            <td>{{ knit.time_start |time:"H:i"}}</td>
+                            <td>{{ knit.created_at |date:"d. M. Y" }}</td>
+                            <td>{{ knit.created_by }}</td>
+                            <td><a href="{% url 'knit_detail' knit.pk %}"
+                                   class="btn btn-primary">
+                                Les mer
+                            </a></td>
+                            <td><a href="{% url 'delete_knit' knit.pk %}"
+                                   class="btn btn-danger">
+                                Avmeld
+                            </a></td>
+
+
+                        </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Mine annonser
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
+                    Ingen ting enda
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
