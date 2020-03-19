@@ -32,7 +32,7 @@ def home(request):
     Dersom det brukeren ikke submitter data, vil den rendre siden (prosessere HTML-filen) med en tom form.
 
     :param request: En HTTP-request fra brukeren.
-    :return: 1. HTTP-response i form av prosessert HTML-fil ved at man blir redirecta til siden. 
+    :return: 1. HTTP-response i form av prosessert HTML-fil ved at man blir redirecta til siden.
     """
     if request.method == "POST":
         form = SendMessageToAdmin(request.POST)
