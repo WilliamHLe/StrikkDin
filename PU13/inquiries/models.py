@@ -22,4 +22,12 @@ class Inquiries(models.Model):
         ordering = ['created_at']
 
     def __str__(self):
+        """
+        Metoden blir kalt på hver gang man bruker str(objekt).
+        Django bruker str(objekt) på flere steder, men mest på Admin-siden.
+        Derfor er det hensiktmessig å printe det ut på en leselig format.
+        For eksempel under "My actions" på adminsiden vil dette printes ut.
+
+        :return: Tekstreng på format subject/description
+        """
         return '{}/{}'.format(self.subject, self.description)
