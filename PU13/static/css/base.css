@@ -46,3 +46,48 @@
 .nav-item a:last-child{
     padding-right: 0;
 }
+
+
+
+
+
+     @media (max-width: 768px){
+        .right-column{
+            margin-left: 0;
+        }
+    }
+
+    @media (min-width: 768px){
+        .right-column{
+            margin-left: 20px;
+        }
+
+
+
+        .content{
+            padding: 20px 40px;
+
+        }
+    }
+
+    .blog-post-container{
+    background-color: #6c757d;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.create-post-bar{
+    background-color: #0c5460;
+    margin-bottom: 20px;
+}
+
+.left-column{
+    padding: 0;
+
+}
+
+.right-column{
+    padding: 0;
+
+}
+

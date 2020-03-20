@@ -33,7 +33,7 @@ urlpatterns = [
     path('', include("inquiries.urls")),
     path('', include(('inquiries.urls', 'inquiries'))),
 
-    path('personal_feed/', include('personal_feed.urls'))
+    path('personal_feed/', include('personal_feed.urls')),
 
     path('', include("arrangements.urls")),
     path('', include(('arrangements.urls', 'arrangements'))),

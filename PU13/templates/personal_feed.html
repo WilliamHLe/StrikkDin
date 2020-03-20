@@ -1,12 +1,60 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-<h1>This is where our personal feed will be!!</h1>
+{% load widget_tweaks %}
 
-</body>
-</html>
+{% block body %}
+
+<div class="content">
+
+<div class = 'container'>
+
+    <!-- What is a d-flex column? This should be commented on in the code-->
+
+    <div class="row">
+
+        <!-- This will show when the screen gets smaller -->
+         <div class="create-post-bar d-lg-none col-lg-7 offset-lg-1">
+            <a href="{% url 'personal_feed:create'%}" >Create Post</a>
+        </div>
+
+        <!--Blog feed-->
+        <div class="left-column col-lg-7 offset-lg-1">
+
+            <div class="blog-post-container">
+                <p>Stuff</p>
+            </div>
+            <div class="blog-post-container">
+                <p>Stuff</p>
+            </div>
+            <div class="blog-post-container">
+                <p>Stuff</p>
+            </div>
+            <div class="blog-post-container">
+                <p>Stuff</p>
+            </div>
+
+        </div>
+
+        <!--Blog feed-->
+
+        <!--Creating our profile tool bar here, first for creating posts-->
+
+        <div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+
+            <div class="create-post-bar" style="border: 1px solid #000">
+                <p>stuff</p>
+                 <p>stuff</p>
+                 <p>stuff</p>
+               <a href="{% url 'personal_feed:create'%}">Create Post</a>
+            </div>
+
+        </div>
+        <!--End create post column-->
+
+    </div>
+
+
+</div>
+</div>
+
+{% endblock body %}
