@@ -17,3 +17,9 @@ class CreateKnit(forms.Form):
     time = forms.DateTimeField(label="Tidspunkt (yyyy-mm-dd)")
     time_start = forms.TimeField(label="Tidspunkt (yyyy-mm-dd)")
     description = forms.CharField(widget=forms.Textarea, label="Beskrivelse", max_length="500")
+
+
+class CreateYarn(forms.Form):
+    yarn_name = forms.CharField(label="Garn", max_length="200")
+    url = forms.CharField(label="Nettsted", max_length="200")
+    description = forms.CharField(widget=forms.Textarea, label="Beskrivelse", max_length="500")

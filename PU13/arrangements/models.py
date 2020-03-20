@@ -23,3 +23,11 @@ class KnitNight(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_by1')
     participants = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='participants1',
                                           blank=True)
+
+
+class Ads(models.Model):
+    yarn_name = models.CharField(max_length=255)
+    description = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='created_by2')

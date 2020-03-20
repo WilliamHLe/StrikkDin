@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Challenge, KnitNight
+from .models import Challenge, KnitNight, Ads
 from django.contrib import messages
-from .forms import CreateChallenge, CreateKnit
+from .forms import CreateChallenge, CreateKnit, CreateYarn
 from accounts.models import CustomUser
 from django.db.models import F
 
@@ -31,7 +31,7 @@ def challengeView(request):
 
 # Shows a detailed view of the challenge
 def challenge_detail(request, pk):
-    challenges = Challenge.objects.get(pk=pk)  # Using the primary key/ID to get the requested challenge
+    challenges = Challenge.objects.get(pk=pk) # Using the primary key/ID to get the requested challenge
     count = Challenge.objects.values('participants').filter(pk=pk).exclude(
         participants__isnull=True).count()  # Counts the participants for a challenge
     current_user = request.user
@@ -155,3 +155,33 @@ def create_knit(request):
 
     return render(request, "knit/create_knit.html", {"form": form})
 
+
+def yarnView(request):
+    yarn = Ads.objects.all()  # Get all the yarn ads in the database
+
+    context = {
+        'yarn': yarn,
+    }
+    return render(request, 'ads/yarn.html', context)
+
+
+def create_yarn(request):
+    current_user = request.user  # Get the currently logged in user
+    if request.method == "POST":
+        form = CreateYarn(request.POST)
+        if form.is_valid():
+            b = current_user
+            a = form.cleaned_data["yarn_name"]
+            t = form.cleaned_data["description"]
+            e = form.cleaned_data["url"]
+            f = Ads(created_by=b, yarn_name=a, description=t, url=e)
+            f.save()
+
+            return redirect('yarn')
+        else:
+            messages.error(request, 'Fyll ut alle feltene!!')
+
+    else:
+        form = CreateYarn()
+
+    return render(request, "ads/create_yarn.html", {"form": form})
