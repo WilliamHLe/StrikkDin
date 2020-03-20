@@ -21,5 +21,5 @@ urlpatterns = [
     path("minside/", views.my_page, name="my_page"),
     path("minside/avmeld/utfordring/<int:pk>/", views.deregister_challenge, name="delete"),
     path("minside/avmeld/strikkekveld/<int:pk>/", views.deregister_knit, name="delete_knit"),
-    path("minside/fullført/utfordring", views.complete_challenge, name="complete"),
+    path("minside/fullfort/utfordring", views.complete_challenge, name="complete"),
 ]
