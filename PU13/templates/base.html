@@ -11,24 +11,21 @@
   <body>
     <main>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-          <a class="navbar-brand" href="{%  url 'home' %}">StrikkDin</a>
+          <a class="navbar-brand" href="{%  url 'personal_feed:personal_feed' %}">StrikkDin</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <!-- <a class="nav-item nav-link" href="{%  url 'home' %}">Hjem <span class="sr-only">(current)</span></a>-->
+                <!-- <a class="nav-item nav-link" href="{%  url 'home' %}">Hjem <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="{%  url 'arrangements:chall' %}">Utfordringer</a>
-                <a class="nav-item nav-link" href="{%  url 'arrangements:knit' %}">Strikkekveld</a>
+                <a class="nav-item nav-link" href="{%  url 'arrangements:knit' %}">Strikkekveld</a> -->
                 <a class="nav-item nav-link" href="{%  url 'inquiries:kontakt' %}">Kontakt admin</a>
 
 
             </div>
               {% if user.is_authenticated %}
                   <div class="navbar-nav ml-auto">
-                  <span class="navbar-text">
-                       Hei, {{ user.username }}
-                    </span>
               <a class="nav-item nav-link" href="{%  url 'personal_feed:personal_feed' %}">Profil</a>
               <a class="nav-item nav-link" href="{%  url 'arrangements:my_page' %}">Min side</a>
               <a class="nav-item nav-link" href="{%  url 'logout' %}">Logg ut</a>

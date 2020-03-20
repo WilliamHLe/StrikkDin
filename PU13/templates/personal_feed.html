@@ -14,23 +14,32 @@
 
         <!-- This will show when the screen gets smaller -->
          <div class="create-post-bar d-lg-none col-lg-7 offset-lg-1">
-            <a href="{% url 'personal_feed:create'%}" >Create Post</a>
+            <a href="#" >Create Post</a>
         </div>
 
         <!--Blog feed-->
         <div class="left-column col-lg-7 offset-lg-1">
 
-            <div class="blog-post-container">
-                <p>Stuff</p>
+            <div class="blog-post-container mt-4 p-4">
+                <div class="row">
+                    <div class="feed_posts">
+                        <h3 class="mb-3 font-weight-normal">{{user.name}}'s Feed</h3>
+                        {% if posts %}
+                        <ul>
+                {% for post in posts %}
+                        <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
+                            <li class="list-group-item">{{post}}</li>
+                        </a>
+                            {% endfor %}
+                        </ul>
+                {%else%}
+
+                        <p> Hey {{user.name}}, you currently have no posts. Create a post <a href="{% url 'personal_feed:create'%}">here</a> </p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-            <div class="blog-post-container">
-                <p>Stuff</p>
-            </div>
-            <div class="blog-post-container">
-                <p>Stuff</p>
-            </div>
-            <div class="blog-post-container">
-                <p>Stuff</p>
+
             </div>
 
         </div>
@@ -42,10 +51,12 @@
         <div class="right-column col-lg-3 d-lg-flex d-none flex-column">
 
             <div class="create-post-bar" style="border: 1px solid #000">
-                <p>stuff</p>
-                 <p>stuff</p>
-                 <p>stuff</p>
-               <a href="{% url 'personal_feed:create'%}">Create Post</a>
+                <ul>
+              <li class="list-group-item"> <a href="{% url 'personal_feed:create'%}">Create Post</a></li>
+               <li class="list-group-item">  <a href="{%  url 'arrangements:chall' %}">Utfordringer</a></li>
+                <li class="list-group-item"> <a href="{%  url 'arrangements:knit' %}">Strikkekveld</a></li>
+                <li class="list-group-item"> <a href="{%  url 'inquiries:kontakt' %}">Kontakt admin</a></li>
+                </ul>
             </div>
 
         </div>
