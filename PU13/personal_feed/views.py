@@ -9,14 +9,14 @@ from django.http import HttpResponseRedirect
 
 # Straying from class based views, creating my own functions
 
-
+# Rendering the main feed page
 def personal_feed_view(request):
     context = {}
     feed_posts = sorted(Personal_Feed_Post.objects.filter(author=request.user),key=attrgetter('date_published'), reverse=True)
     context['posts'] = feed_posts
     return render(request, "personal_feed.html", context)
 
-
+# Rendering the create post form and redirecting if it's successful
 def create_blog_view(request):
     context = {}
     user = request.user
@@ -32,6 +32,7 @@ def create_blog_view(request):
 
     return render(request, "create_blog.html", context)
 
+# Shows a detailed view of each blog post when you click on it
 
 def detail_blog_view(request, slug):
     context = {}

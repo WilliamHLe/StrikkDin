@@ -7,7 +7,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 
 
-# Should be mentioned that image functionality could easily be added later in this class
+# Creating our post model
 class Personal_Feed_Post(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
     content = models.TextField(max_length=5000, null=False, blank=False)
