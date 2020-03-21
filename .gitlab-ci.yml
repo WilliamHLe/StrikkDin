@@ -5,5 +5,5 @@ test:
     stage: test 
     script: 
         - echo "Testing"
-        - python manage.py test
+        - python PU13/manage.py test
    
