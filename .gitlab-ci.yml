@@ -5,5 +5,5 @@ test:
     stage: test 
     script: 
         - echo "Testing"
-        - python manage.py test
+        - python3 manage.py test
    
