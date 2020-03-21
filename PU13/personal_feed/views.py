@@ -1,11 +1,10 @@
 from operator import attrgetter
 
-import get as get
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Personal_Feed_Post
 from .forms import Create_Personal_Feed_Post_Form
 from django.http import HttpResponseRedirect
-
+from django.contrib import messages
 
 # Straying from class based views, creating my own functions
 
@@ -26,7 +25,10 @@ def create_blog_view(request):
         obj = form.save(commit=False)
         obj.author = user
         obj.save()
-        return HttpResponseRedirect("/personal_feed/personal_feed")
+
+        #Assuring the user the post has been created
+        messages.success(request, "Innlegget er blitt lagt ut")
+        return redirect("personal_feed:personal_feed")
 
     context['form'] = form
 
