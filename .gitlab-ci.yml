@@ -1,9 +1,9 @@
-stages: 
-    - test
+stages:
+  - test
 
 test:
-    stage: test 
-    script: 
-        - echo "Testing"
-        - py PU13/manage.py test
-   
+    image: python:3.8.1
+    script:
+      - pip install -r requirements.txt
+      - cd PU13
+      - python manage.py test
