@@ -1,20 +1,15 @@
 stages: 
-    - build
+    - initial
     - test
-build: 
+initial: 
     stage: build
     script: 
-        - echo "Building"
-        - mkdir build
-        - touch build/info.txt
-    artifacts: 
-        paths: 
-            - build/
-    
+        - echo "Initialize before testing"
+        - pip install -r requirements.txt
 
 test:
     stage: test 
     script: 
         - echo "Testing"
-        - test -f "build/info.txt"
+        - python manage.py runserver
    
