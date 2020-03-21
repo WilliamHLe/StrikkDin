@@ -1,8 +1,9 @@
 stages: 
     - initial
     - test
+    
 initial: 
-    stage: build
+    stage: initial
     script: 
         - echo "Initialize before testing"
         - pip install -r requirements.txt
