@@ -5,5 +5,5 @@ test:
     stage: test 
     script: 
         - echo "Testing"
-        - python manage.py runserver
+        - python manage.py test
    
