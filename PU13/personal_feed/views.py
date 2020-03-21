@@ -22,7 +22,7 @@ def create_blog_view(request):
         form = Create_Personal_Feed_Post_Form()
 
         #adding a server response to assure the user the post has been sent and redirecting to feed
-        messages.success(request, 'Innlegget har blitt lagt ut')
+        messages.success(request, 'Innlegget er blitt lagt ut')
         response = redirect('personal_feed:personal_feed')
         return response
 
