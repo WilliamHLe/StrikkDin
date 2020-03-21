@@ -1,17 +1,8 @@
 stages:
   - test
 
-api-test:
-  stage: test
-  image: python:3.8.1
-  script:
-    - cd PU13
-    # Create environment for python
-    - pip install virtualenv
-    - virtualenv -p python venv
-    - source venv/bin/activate
-    - pip install -r requirements.txt
-    # Set up and run tests
-    - python manage.py makemigrations
-    - python manage.py migrate
-    - python manage.py test
+test:
+    image: python:3.8.1
+    script:
+      - pip install -r requirements.txt
+      - python manage.py test
