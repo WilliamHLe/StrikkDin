@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Personal_Feed_Post
 from .forms import Create_Personal_Feed_Post_Form
-
+from django.contrib import messages
 # Straying from class based views, creating my own functions
 
 
@@ -20,6 +20,11 @@ def create_blog_view(request):
         obj.author = user
         obj.save()
         form = Create_Personal_Feed_Post_Form()
+
+        #adding a server response to assure the user the post has been sent and redirecting to feed
+        messages.success(request, 'Innlegget har blitt lagt ut')
+        response = redirect('personal_feed:personal_feed')
+        return response
 
     context['form'] = form
 
