@@ -10,7 +10,7 @@ from django.dispatch import receiver
 # Should be mentioned that image functionality could easily be added later in this class
 class Personal_Feed_Post(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False)
-    content = models.CharField(max_length=5000, null=False, blank=False)
+    content = models.TextField(max_length=5000, null=False, blank=False)
     date_published = models.DateTimeField(auto_now_add=True, verbose_name='date published')
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     # In case you haven't seen this, a slug is just a URL, we have to make sure each URL is unique

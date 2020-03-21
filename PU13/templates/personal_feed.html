@@ -4,18 +4,27 @@
 
 {% block body %}
 
+<!-- Dette er sidebaren vår. Trenger å formattere den slik at den kommer helt til høyre, ikke foran post feeden-->
+<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
+
+            <div class="create-post-bar">
+                <ul>
+              <li class="list-group-item"> <a href="{% url 'personal_feed:create'%}">Opprett innlegg</a></li>
+               <li class="list-group-item">  <a href="{%  url 'arrangements:chall' %}">Utfordringer</a></li>
+                <li class="list-group-item"> <a href="{%  url 'arrangements:knit' %}">Strikkekveld</a></li>
+                <li class="list-group-item"> <a href="{%  url 'inquiries:kontakt' %}">Kontakt admin</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+<!--Her har vi masse tags som egentlig ikke er nødvendige, trenger hjelp til formattering-->
+
 <div class="content">
 
-<div class = 'container'>
-
-    <!-- What is a d-flex column? This should be commented on in the code-->
+    <div class = 'container'>
 
     <div class="row">
-
-        <!-- This will show when the screen gets smaller -->
-         <div class="create-post-bar d-lg-none col-lg-7 offset-lg-1">
-            <a href="#" >Create Post</a>
-        </div>
 
         <!--Blog feed-->
         <div class="left-column col-lg-7 offset-lg-1">
@@ -26,16 +35,31 @@
                         <h3 class="mb-3 font-weight-normal">{{user.name}}'s Feed</h3>
                         {% if posts %}
                         <ul>
-                {% for post in posts %}
-                        <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
-                            <li class="list-group-item">{{post}}</li>
-                        </a>
-                            {% endfor %}
-                        </ul>
-                {%else%}
+                            <!-- Sidebaren vil forsvinne når skjermen blir mindre, og dermed oppretter vi en ekstra 'opprett innlegg' knapp
+                            som vises kun når skjermen er små. Burde vi ha resten av sidebaren også?-->
+                            <div class="post d-lg-none">
+                                <li class="list-group-item"><a href="{% url 'personal_feed:create'%}">Opprett innlegg</a>
+                                </li>
+                            </div>
+                            <div class="post">
+                                {% for post in posts %}
 
-                        <p> Hey {{user.name}}, you currently have no posts. Create a post <a href="{% url 'personal_feed:create'%}">here</a> </p>
-                        {% endif %}
+                                <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
+                                    <li class="list-group-item">{{post}}</li>
+                                </a>
+                                <div class="card-footer text-muted">Publisert {{feed_post.date_published}} av
+                                    {{user.name}}
+                                </div>
+                                {% endfor %}
+
+                            </div>
+                            {%else%}
+                        </ul>
+                        <!-- Dette vises i tilfellet brukeren ikke har opprettet noen posts enda-->
+                        <ul>
+                            <p> Hei {{user.name}}, du har ikke noen innlegg enda. Opprett en <a
+                                    href="{% url 'personal_feed:create'%}">her.</a></p>
+                            {% endif %}
                     </div>
                 </div>
             </div>
@@ -46,21 +70,8 @@
 
         <!--Blog feed-->
 
-        <!--Creating our profile tool bar here, first for creating posts-->
 
-        <div class="right-column col-lg-3 d-lg-flex d-none flex-column">
 
-            <div class="create-post-bar" style="border: 1px solid #000">
-                <ul>
-              <li class="list-group-item"> <a href="{% url 'personal_feed:create'%}">Create Post</a></li>
-               <li class="list-group-item">  <a href="{%  url 'arrangements:chall' %}">Utfordringer</a></li>
-                <li class="list-group-item"> <a href="{%  url 'arrangements:knit' %}">Strikkekveld</a></li>
-                <li class="list-group-item"> <a href="{%  url 'inquiries:kontakt' %}">Kontakt admin</a></li>
-                </ul>
-            </div>
-
-        </div>
-        <!--End create post column-->
 
     </div>
 
