@@ -44,7 +44,7 @@ class TestInquiries(TestCase):
     def test_GET_request_and_correct_template(self):
         response = self.client.get(self.url)
         self.assertEquals(response.status_code, 200)
-        self.assertTemplateUsed(response, "contactAdmin.html")
+        self.assertTemplateUsed(response, "contact_admin.html")
 
 
 

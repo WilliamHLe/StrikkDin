@@ -10,11 +10,14 @@ def my_page(request):
     mychallenges = Challenge.objects.filter(
         participants=request.user)  # Get all the challenges which have the logged in user as a participant
     myknit = KnitNight.objects.filter(
-        participants=request.user)  # Get all the challenges which have the logged in user as a participant
+        participants=request.user)  # Get all the knit night which have the logged in user as a participant
+    myads = Ads.objects.filter(
+        created_by=request.user)  # Get all the ads which have the logged in user as a participant
 
     context = {
         'mychallenges': mychallenges,
         'myknit': myknit,
+        'myads': myads,
     }
     return render(request, "my_page.html", context)
 
