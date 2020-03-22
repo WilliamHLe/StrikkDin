@@ -2,47 +2,33 @@
 
 {% load widget_tweaks %}
 
+
 {% block body %}
 
-<style>
-    .card {
-        max-width: 700px;
-    }
+    <div id="wrapper">
+        {% include "includes/sidebar.html" %}
 
-    .container {
-        padding: 20px;
-    }
-</style>
+        <div id="page-content-wrapper">
+            <div class="container w-50 mt-4 mb-4">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- Creating detailed view of single blog post-->
+                        <div class="card">
+                            <div class="card-body my-2">
+                                <h2 class="card-title">{{ feed_post.title }}</h2>
+                                <!-- 'safe' enables us to render html if we enter it into a post-->
+                                <p class="card-text">{{ feed_post.content|safe }}</p>
+                            </div>
+                            <div class="card-footer text-muted">Published at {{ feed_post.date_published }}
+                                by {{ user.name }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<div class="right-column col-lg-3 d-lg-flex d-none flex-column">
-
-            <div class="create-post-bar">
-                <ul>
-              <li class="list-group-item"> <a href="{% url 'personal_feed:personal_feed'%}">Tilbake til Feed</a></li>
-               <li class="list-group-item">  <a href="{%  url 'arrangements:chall' %}">Utfordringer</a></li>
-                <li class="list-group-item"> <a href="{%  url 'arrangements:knit' %}">Strikkekveld</a></li>
-                <li class="list-group-item"> <a href="{%  url 'inquiries:kontakt' %}">Kontakt admin</a></li>
-                </ul>
             </div>
-
-        </div>
-
-<div class="container">
-    <div class="row">
-
-        <!-- Creating detailed view of single blog post-->
-        <div class="card">
-            <div class="card-body my-2">
-                <h2 class="card-title">{{feed_post.title}}</h2>
-                <!-- 'safe' enables us to render html if we enter it into a post-->
-                <p class="card-text">{{feed_post.content|safe}}</p>
-            </div>
-            <div class="card-footer text-muted">Published at {{feed_post.date_published}} by {{user.name}}</div>
         </div>
 
     </div>
-</div>
-
-
 
 {% endblock body %}

@@ -9,7 +9,13 @@
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
                  <li class="sidebar-brand">
-                    <a href="{% url 'personal_feed:personal_feed' %}">Min profil</a>
+                    <a href="{% url 'personal_feed:personal_feed' %}">
+                        {% if feed_post %}
+                            Tilbake til feed
+                            {% else %}
+                            Min profil
+                        {% endif %}
+                    </a>
                 </li>
                 <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
                 <li><a href="{% url 'chall' %}">Utfordringer</a></li>
