@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static "css/sidebar.css" %}">
+{% endblock stylesheet %}
+
+{% block body %}
+        <!--Sidebar -->
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                 <li class="sidebar-brand">
+                    <a href="{% url 'personal_feed:personal_feed' %}">Min profil</a>
+                </li>
+                <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
+                <li><a href="{% url 'chall' %}">Utfordringer</a></li>
+                <li><a href="{% url 'knit' %}">Strikkekveld</a></li>
+                <li><a href="{% url 'kontakt' %}">Kontakt admin</a></li>
+            </ul>
+        </div>
+{% endblock body %}
