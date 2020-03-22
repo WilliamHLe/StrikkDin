@@ -1,8 +1,8 @@
-from datetime import time, date
-
+from datetime import time, date, datetime
+from django.utils import timezone
 from django.test import TestCase, Client
 import sys
-
+import pytz
 from accounts.models import CustomUser
 
 sys.path.append('..')
@@ -42,6 +42,7 @@ class TestChallengeViews(TestCase):
         self.utfordring_opprett_url = reverse("create_challenge")
         self.chall_detail_url = reverse("challenge_detail", args=[1])
         self.user1 = CustomUser.objects.create_user(username='test123', password='test123', name='AAron')
+        self.user2 = CustomUser.objects.create_user(username='test1234', password='test1234', name='AAron1')
         self.challenge1 = Challenge.objects.create(
             challenge_name="Hansker",
             description="Hansker med avtagbare fingre",
@@ -49,6 +50,9 @@ class TestChallengeViews(TestCase):
             created_at=date(2020, 4, 12),
             created_by=self.user1,
         )
+        login = self.client.login(username='test123', password='test123')
+
+        self.assertTrue(login)
 
     def test_challenge_view(self):
         response = self.client.get(self.chall_url)
@@ -64,11 +68,22 @@ class TestChallengeViews(TestCase):
         # Sjekker om den bruker riktig template
         self.assertTemplateUsed((response, "challenge/challenge_detail.html"))
 
-    def test_create_challenge(self):
-        # Logger inn
-        login = self.client.login(username='test123', password='test123')
+    def test_challenge_details_post(self):
+        #Melder på bruker 1
+        response = self.client.post(self.chall_detail_url)
+        #Logger ut bruker 1
+        self.client.logout()
+        #Logger inn bruker 2
+        self.client.login(username = "test1234",password = "test1234")
+        #melder på bruker 2
+        self.client.post(self.chall_detail_url)
+        #Sjekker response-kode
+        self.assertEquals(response.status_code, 200)
+        #Sjekker at det er 2 påmeldte.
+        self.assertEquals(Challenge.objects.all()[0].participants.count(), 2)
 
-        self.assertTrue(login)
+    def test_create_challenge(self):
+
         # Lager et objekt i databasen
         response = self.client.post(self.utfordring_opprett_url, {
 
@@ -76,10 +91,17 @@ class TestChallengeViews(TestCase):
             "description": "Heiheihei",
             "rec_user_level": "Legende"}
                                     )
-        # Sjekker at det er riktig http-response kode
+        # Sjekker at det er riktig http-response kode (302 fordi man blir redirectet til en annen url)
         self.assertEquals(response.status_code, 302)
         # Sjekker at det andre objektet har navnet "Heisann" (Første objektet er det som blir laget i
         self.assertEquals(Challenge.objects.all()[1].challenge_name, "Heisann")
+
+    def test_create_no_challenge(self):
+        response = self.client.post(self.utfordring_opprett_url)
+        # Sjekker at det er riktig http-response kode (200 fordi man blir på samme side denne gangen)
+        self.assertEquals(response.status_code, 200)
+        # Sjekker at det andre objektet har navnet "Heisann" (Første objektet er det som blir laget i setUp-metoden)
+        self.assertEquals(Challenge.objects.all().count(), 1)
 
 
 # Tester for selve skjemaet
@@ -136,6 +158,73 @@ class TestKnitForm(TestCase):
         })
         self.assertFalse(form.is_valid())
 
+
+class TestKnitViews(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.knit_url = reverse("knit")
+        self.create_knit_url = reverse("create_knit")
+        self.knit_detail = reverse("knit_detail", args=[1])
+        self.user1 = CustomUser.objects.create_user(username='test123', password='test123', name='AAron')
+        self.user2 = CustomUser.objects.create_user(username='test1234', password='test1234', name='AAron1')
+        self.knit1 = KnitNight.objects.create(
+            knit_name="StarWars strikkekveld",
+            description = "Masse gøy starwars-strikking",
+            time = datetime(2020,4,20,tzinfo=pytz.UTC) ,
+            time_start = time(19,30,0),
+            created_at = timezone.now(),
+            created_by = self.user1
+
+        )
+        login = self.client.login(username='test123', password='test123')
+
+        self.assertTrue(login)
+
+    def test_knit_view(self):
+        response = self.client.get(self.knit_url)
+        # Sjekker om den klarer å hente ned siden (HTTP-response code 200)
+        self.assertEquals(response.status_code, 200)
+        # Sjekker om den bruker riktig template
+        self.assertTemplateUsed(response, "knit/knit.html")
+
+    def test_knit_details_get(self):
+        response = self.client.get(self.knit_detail)
+        # Sjekker om den klarer å hente ned siden (HTTP-response code 200)
+        self.assertEquals(response.status_code, 200)
+        # Sjekker om den bruker riktig template
+        self.assertTemplateUsed((response, "knit/knit_detail.html"))
+
+    def test_knit_details_post(self):
+        #Melder på bruker 1
+        response = self.client.post(self.knit_detail)
+        #Logger ut bruker 1
+        self.client.logout()
+        #Logger inn bruker 2
+        self.client.login(username = "test1234",password = "test1234")
+        #melder på bruker 2
+        self.client.post(self.knit_detail)
+        #Sjekker response-kode
+        self.assertEquals(response.status_code, 200)
+        #Sjekker at det er 2 påmeldte.
+        self.assertEquals(KnitNight.objects.first().participants.count(), 2)
+# Denne testen funker ikke helt enda
+"""
+    def test_create_challenge(self):
+
+        # Lager et objekt i databasen
+        response = self.client.post(self.create_knit_url, {
+
+            "knit_name": "Heisannsveisann",
+            "description": "Skikkelig bra strikkekveld kommer",
+            "time": datetime(2020,4,21,tzinfo=pytz.UTC),
+            "time_start": time(19, 30, 00),
+            }
+                                    )
+        # Sjekker at det er riktig http-response kode (302 fordi man blir redirectet til en annen url)
+        #self.assertEquals(response.status_code, 302)
+        # Sjekker at det andre objektet har navnet "Heisann" (Første objektet er det som blir laget i setUp-metoden)
+        self.assertEquals(KnitNight.objects.all()[1].description, "Skikkelig bra strikkekveld kommer")
+"""
 
 # Tester for min side
 class TestMyPageUrl(TestCase):
