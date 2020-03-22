@@ -6,48 +6,59 @@
 {% block title %} {{ challenges.challenge_name }} {% endblock %}
 
 {% block body %}
-<div class="container px-20 mt-4 pt-4">
-    <h1 class="pt-3 pb-3"> {{ challenges.challenge_name }} </h1>
+    <div id="wrapper">
+        {% include "includes/sidebar.html" %}
+        <div id="page-content-wrapper">
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        </button>
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="pt-3 pb-3"> {{ challenges.challenge_name }} </h1>
 
-    <div class="row">
-        <div class="col">
-            <img src="{% static 'media/garn.jpg' %}" class="img-fluid px-20 pt-3" alt="Responsive image">
-        </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <div class="row">
+                            <div class="col">
+                                <img src="{% static 'media/garn.jpg' %}" class="img-fluid px-20 pt-3"
+                                     alt="Responsive image">
+                            </div>
 
-        <div class="col pt-3">
-            <h5>Utfordring</h5>
-            <p>{{ challenges.challenge_name }}</p>
-            <h5>Brukernivå</h5>
-            <p>{{ challenges.rec_user_level }}</p>
-            <h5>Beskrivelse</h5>
-            <p>{{ challenges.description }}</p>
-            <h5>Antall påmeldte</h5>
-            <p>{{ count }}</p>
+                            <div class="col pt-3">
+                                <h5>Utfordring</h5>
+                                <p>{{ challenges.challenge_name }}</p>
+                                <h5>Brukernivå</h5>
+                                <p>{{ challenges.rec_user_level }}</p>
+                                <h5>Beskrivelse</h5>
+                                <p>{{ challenges.description }}</p>
+                                <h5>Antall påmeldte</h5>
+                                <p>{{ count }}</p>
 
-            <form method="post" novalidate>
-                {% csrf_token %}
+                                <form method="post" novalidate>
+                                    {% csrf_token %}
 
-                {% for field in form %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {% render_field field class="form-control" %}
+                                    {% for field in form %}
+                                        <div class="form-group">
+                                            {{ field.label_tag }}
+                                            {% render_field field class="form-control" %}
+                                        </div>
+                                    {% endfor %}
+
+                                    <button type="submit" class="btn btn-primary">Meld på</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {% endfor %}
-
-                <button type="submit" class="btn btn-primary">Meld på</button>
-            </form>
-
+            </div>
         </div>
     </div>
-</div>
+    </div>
+
 {% endblock body %}

@@ -5,49 +5,60 @@
 {% block title %} {{ knit.knit_name }} {% endblock %}
 
 {% block body %}
-<div class="container px-20 mt-4 pt-4">
-    <h1 class="pt-3 pb-3"> {{ knit.knit_name }} </h1>
+    <div id="wrapper">
+        {% include "includes/sidebar.html" %}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="pt-3 pb-3"> {{ knit.knit_name }} </h1>
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </button>
-        {{ message }}
-    </div>
-    {% endfor %}
-    {% endif %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close"></button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
 
-    <div class="row">
-        <div class="col">
-            <img src="{% static 'media/knit-night.jpg' %}" class="img-fluid px-20 pt-3" alt="Responsive image">
-        </div>
+                        <div class="row">
+                            <div class="col">
+                                <img src="{% static 'media/knit-night.jpg' %}" class="img-fluid px-20 pt-3"
+                                     alt="Responsive image">
+                            </div>
 
-        <div class="col pt-3">
-            <h5>Strikkekveld</h5>
-            <p>{{ knit.knit_name }}</p>
-            <h5>Dato</h5>
-            <p>{{ knit.time |date:"d. M. Y"}}</p>
-            <h5>Tid</h5>
-            <p>{{ knit.time_start |time:"H:i"}}</p>
-            <h5>Beskrivelse</h5>
-            <p>{{ knit.description }}</p>
-            <h5>Antall påmeldte</h5>
-            <p>{{ count }}</p>
+                            <div class="col pt-3">
+                                <h5>Strikkekveld</h5>
+                                <p>{{ knit.knit_name }}</p>
+                                <h5>Dato</h5>
+                                <p>{{ knit.time |date:"d. M. Y" }}</p>
+                                <h5>Tid</h5>
+                                <p>{{ knit.time_start |time:"H:i" }}</p>
+                                <h5>Beskrivelse</h5>
+                                <p>{{ knit.description }}</p>
+                                <h5>Antall påmeldte</h5>
+                                <p>{{ count }}</p>
 
-            <form method="post" novalidate>
-                {% csrf_token %}
+                                <form method="post" novalidate>
+                                    {% csrf_token %}
 
-                {% for field in form %}
-                <div class="form-group">
-                    {{ field.label_tag }}
-                    {% render_field field class="form-control" %}
+                                    {% for field in form %}
+                                        <div class="form-group">
+                                            {{ field.label_tag }}
+                                            {% render_field field class="form-control" %}
+                                        </div>
+                                    {% endfor %}
+
+                                    <button type="submit" class="btn btn-primary">Meld på</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {% endfor %}
-
-                <button type="submit" class="btn btn-primary">Meld på</button>
-            </form>
-
+            </div>
         </div>
     </div>
-</div>
+
 {% endblock body %}

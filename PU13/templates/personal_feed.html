@@ -14,39 +14,38 @@
         <!--Page content. Alt av innhold skal være innenfor denne wrapperen -->
         <div id="page-content-wrapper">
 
-        <!--Displaying success message after creating a post -->
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert {{ message.tags }} alert-dismissible " role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
-
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="mb-3 font-weight-normal">{{user.username}}'s Feed</h3>
+                        <h1 class="pb-3 pt-3">{{ user.username }}'s Feed</h1>
+                        <!--Displaying success message after creating a post -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert {{ message.tags }} alert-dismissible " role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
                         {% if posts %}
                             {% for post in posts %}
 
-                            <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
-                                <li class="list-group-item">{{post}}</li>
-                            </a>
-                            <div class="card-footer text-muted">Publisert {{feed_post.date_published}} av
-                                {{user.username}}
-                            </div>
+                                <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
+                                    <li class="list-group-item">{{ post }}</li>
+                                </a>
+                                <div class="card-footer text-muted">Publisert {{ feed_post.date_published }} av
+                                    {{ user.username }}
+                                </div>
                             {% endfor %}
-                        {%else%}
+                        {% else %}
 
-                        <!-- Dette vises i tilfellet brukeren ikke har opprettet noen posts enda-->
-                        <ul>
-                            <p> Hei {{user.username}}, du har ikke noen innlegg enda. Opprett en
-                                <a href="{% url 'personal_feed:create'%}">her.</a></p>
-                            {% endif %}
+                            <!-- Dette vises i tilfellet brukeren ikke har opprettet noen posts enda-->
+                            <ul>
+                            <p> Hei {{ user.username }}, du har ikke noen innlegg enda. Opprett en
+                                <a href="{% url 'personal_feed:create' %}">her.</a></p>
+                        {% endif %}
                         </ul>
                     </div>
                 </div>

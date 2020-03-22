@@ -4,31 +4,41 @@
 {% block title %} Kontakt admin {% endblock %}
 
 {% block body %}
-    <div class="container px-20 pt-4 mb-4">
-        <h1 class="pb-3 pt-3"> Kontakt admin </h1>
+    <div id="wrapper">
+        {% include "includes/sidebar.html" %}
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="pb-3 pt-3"> Kontakt admin </h1>
 
-        {% for message in messages %}
-        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> </button>
-            {{ message }}
-        </div>
-        {% endfor %}
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
 
-        <form method="post" novalidate>
-            {% csrf_token %}
+                        <form method="post" novalidate>
+                            {% csrf_token %}
 
-            {% for field in form %}
-            <div class="form-group">
-                {{ field.label_tag }}
-                {% render_field field class="form-control" %}
+                            {% for field in form %}
+                                <div class="form-group">
+                                    {{ field.label_tag }}
+                                    {% render_field field class="form-control" %}
 
-                {% if field.help_text %}
-                <small class="form-text text-muted"> {{ field.help_text }} </small>
-                {% endif %}
+                                    {% if field.help_text %}
+                                        <small class="form-text text-muted"> {{ field.help_text }} </small>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+
+                            <button type="submit" class="btn btn-success">Send melding</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            {% endfor %}
 
-            <button type="submit" class="btn btn-success">Send melding</button>
-        </form>
+        </div>
     </div>
 {% endblock body %}
