@@ -13,6 +13,7 @@
 
         <!--Page content. Alt av innhold skal være innenfor denne wrapperen -->
         <div id="page-content-wrapper">
+
         <!--Displaying success message after creating a post -->
         {% if messages %}
             {% for message in messages %}
@@ -40,6 +41,7 @@
                             </div>
                             {% endfor %}
                         {%else%}
+
                         <!-- Dette vises i tilfellet brukeren ikke har opprettet noen posts enda-->
                         <ul>
                             <p> Hei {{user.username}}, du har ikke noen innlegg enda. Opprett en
