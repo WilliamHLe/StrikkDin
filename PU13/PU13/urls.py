@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 
+
 from django.urls import path, include
 from django.views.generic.base import TemplateView
+
+from django.contrib import admin
+from django.urls import path, include
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +32,8 @@ urlpatterns = [
 
     path('', include("inquiries.urls")),
     path('', include(('inquiries.urls', 'inquiries'))),
+
+    path('personal_feed/', include('personal_feed.urls')),
 
     path('', include("arrangements.urls")),
     path('', include(('arrangements.urls', 'arrangements'))),

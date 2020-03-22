@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inquiries',
     'accounts',
+    'personal_feed',
     'arrangements',
 
     'widget_tweaks',
