@@ -7,23 +7,13 @@
 {% endblock stylesheet %}
 
 {% block body %}
+    <!--Wraps both the whole page, including sidebar and page content -->
     <div id="wrapper">
-        <!--Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                 <li class="sidebar-brand">
-                    <a href="{% url 'personal_feed:personal_feed' %}">Min profil</a>
-                </li>
-                <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
-                <li><a href="{% url 'arrangements:chall' %}">Utfordringer</a></li>
-                <li><a href="{% url 'arrangements:knit' %}">Strikkekveld</a></li>
-                <li><a href="{% url 'inquiries:kontakt' %}">Kontakt admin</a></li>
-            </ul>
-        </div>
+        {% include "includes/sidebar.html" %}
 
         <!--Page content. Alt av innhold skal være innenfor denne wrapperen -->
         <div id="page-content-wrapper">
-              <!--Displaying success message after creating a post -->
+        <!--Displaying success message after creating a post -->
         {% if messages %}
             {% for message in messages %}
                 <div class="alert {{ message.tags }} alert-dismissible " role="alert">
@@ -62,7 +52,6 @@
         </div>
     </div>
 
-    <div class="feed_posts">
 
 {% endblock body %}
 

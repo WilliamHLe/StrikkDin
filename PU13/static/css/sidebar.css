@@ -15,7 +15,6 @@
     transition: all 0.5s ease;
 }
 
-
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
@@ -87,16 +86,8 @@
         padding-left: 250px;
     }
 
-    #wrapper.toggled {
-        padding-left: 0;
-    }
-
     #sidebar-wrapper {
         width: 250px;
-    }
-
-    #wrapper.toggled #sidebar-wrapper {
-        width: 0;
     }
 
     #page-content-wrapper {
@@ -104,8 +95,4 @@
         position: relative;
     }
 
-    #wrapper.toggled #page-content-wrapper {
-        position: relative;
-        margin-right: 0;
-    }
 }
