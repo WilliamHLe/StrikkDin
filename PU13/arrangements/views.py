@@ -66,7 +66,7 @@ def create_challenge(request):
 
             return redirect('chall')
         else:
-            messages.error(request, 'Fyll ut alle feltene!!')
+            messages.error(request, 'Vennligst fyll ut alle feltene')
 
     else:
         form = CreateChallenge()
@@ -94,7 +94,7 @@ def complete_challenge(request):
     #     val = challenge['completed_challenges']
     #     chall = CustomUser.objects.values('completed_challenges').filter(username=us)
 
-    messages.success(request, 'Du har fullført utfordringen!')
+    messages.success(request, 'Gratulerer, du har fullført utfordringen!')
     return redirect("my_page")
 
 
@@ -151,7 +151,7 @@ def create_knit(request):
 
             return redirect('knit')
         else:
-            messages.error(request, 'Fyll ut alle feltene!!')
+            messages.error(request, 'Vennligst fyll ut alle feltene')
 
     else:
         form = CreateKnit()
@@ -182,7 +182,7 @@ def create_yarn(request):
 
             return redirect('yarn')
         else:
-            messages.error(request, 'Fyll ut alle feltene!!')
+            messages.error(request, 'Vennligst fyll ut alle feltene')
 
     else:
         form = CreateYarn()

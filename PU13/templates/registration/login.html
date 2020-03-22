@@ -1,33 +1,28 @@
 {% extends 'base.html' %}
-
 {% load widget_tweaks %}
 
-{% block title %}
-Logg inn
-{% endblock %}
+{% block title %} Logg inn {% endblock %}
 
 {% block body %}
+    <div class="container w-50 mb-4 pt-4">
 
-    <div class="container w-50 mt-4">
+        <!-- Looper gjennom Djangos innebygde meldinger. Formaterer og styler meldingen som blir gitt til brukeren.
+        I dette tilfelle returnerer message.tags kun "success" slik at det bare er på vellykde registreringer man blir sendt til login-siden -->
 
-<!-- Looper gjennom Djangos innebygde meldinger. Formaterer og styler meldingen som blir gitt til brukeren.
-     I dette tilfelle returnerer message.tags kun "success" slik at det bare er på vellykde registreringer man blir sendt til login-siden -->
         {% for message in messages %}
-          <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            </button>
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
             {{ message }}
-          </div>
+        </div>
         {% endfor %}
 
-        <h2>Logg inn</h2>
+        <h1 class="pt-3 pb-3">Logg inn</h1>
 
         <form method="post" novalidate>
-
             {% csrf_token %}
             {% include 'includes/forms.html' %}
-
             <button type="submit" class="btn btn-success">Logg inn</button>
-          </form>
+        </form>
+
     </div>
 {% endblock body%}
