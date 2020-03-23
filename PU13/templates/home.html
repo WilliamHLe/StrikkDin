@@ -1,30 +1,27 @@
 {% extends 'base.html' %}
-{% block title %}
-Hjem
-{% endblock %}
+{% block title %} StrikkDin {% endblock %}
 
 {% block body %}
-    <div class="container text-center mt-5">
+<div id="hero">
+    <div class="container-fluid text-center pt-4 mb-4">
+        <h1 class="pb-3 pt-3"> Velkommen til StrikkDin! </h1>
 
-        <h3>Velkommen til StrikkDin!</h3>
-        <h3> {{user.name}} </h3>
         {% if user.is_authenticated %}
             {% if user.is_Company %}
-                <h3>Du er logget inn som en bedrift</h3>
+                <h4>Du er logget inn som en bedrift</h4>
             {% elif 'admin' in user.username %}
-                <h3>Du er for tiden logget inn som admin</h3>
+                <h4>Du er logget inn som admin</h4>
             {% else %}
-                <h3>Du er for tiden logget inn som en bruker</h3>
-            {% endif %}
-
-        {% else %}
-
-          <div class="mb-5">
-              <a href="{% url 'login' %}">Logg inn</a> |
-              <a href="{% url 'accounts:signup' %}">Registrer</a>
-          </div>
+                <h4>Du er for tiden logget inn som en bruker</h4>
         {% endif %}
 
-        <img src="static/media/knitball.png" class="img-fluid w-50 pt-3" alt="Responsive image">
+        {% else %}
+            <div class="mb-5">
+                <a href="{% url 'login' %}">Logg inn</a> |
+                <a href="{% url 'accounts:signup' %}">Registrer</a>
+            </div>
+        {% endif %}
+
     </div>
+</div>
 {% endblock body %}

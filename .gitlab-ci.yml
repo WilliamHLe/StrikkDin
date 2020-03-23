@@ -1,20 +1,9 @@
-stages: 
-    - build
-    - test
-build: 
-    stage: build
-    script: 
-        - echo "Building"
-        - mkdir build
-        - touch build/info.txt
-    artifacts: 
-        paths: 
-            - build/
-    
+stages:
+  - test
 
 test:
-    stage: test 
-    script: 
-        - echo "Testing"
-        - test -f "build/info.txt"
-   
+    image: python:3.8.1
+    script:
+      - pip install -r requirements.txt
+      - cd PU13
+      - python manage.py test
