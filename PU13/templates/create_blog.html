@@ -5,10 +5,12 @@
 {% block body %}
     <!-- Our sidebar, yet again-->
     <div id="wrapper">
-    {% include "includes/sidebar.html" %}
+    {% if user.is_authenticated %}
+        {% include "includes/sidebar.html" %}
+    {% endif %}
 
     <div id="page-content-wrapper">
-        <div class="container-fluid">
+        <div class="container px-20 pt-4 mb-4">
             <div class="row">
 
                 <!--Divs are divided into 12 columns. "col-lg-12" will span 12 og 12 columns

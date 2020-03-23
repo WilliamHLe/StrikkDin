@@ -9,12 +9,14 @@
 {% block body %}
     <!--Wraps both the whole page, including sidebar and page content -->
     <div id="wrapper">
-        {% include "includes/sidebar.html" %}
+        {% if user.is_authenticated %}
+            {% include "includes/sidebar.html" %}
+        {% endif %}
 
         <!--Page content. Alt av innhold skal være innenfor denne wrapperen -->
         <div id="page-content-wrapper">
 
-            <div class="container-fluid">
+            <div class="container px-20 pt-4 mb-4">
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="pb-3 pt-3">{{ user.username }}'s Feed</h1>

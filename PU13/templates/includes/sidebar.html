@@ -10,7 +10,7 @@
             <ul class="sidebar-nav">
                  <li class="sidebar-brand">
                     <a href="{% url 'personal_feed:personal_feed' %}">
-                        {% if feed_post or knit %}
+                        {% if feed_post or knit or yarn or challenges %}
                             Tilbake til feed
                             {% else %}
                             Min profil
@@ -20,6 +20,7 @@
                 <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
                 <li><a href="{% url 'chall' %}">Utfordringer</a></li>
                 <li><a href="{% url 'knit' %}">Strikkekveld</a></li>
+                <li><a href="{% url 'yarn' %}">Annonser </a></li>
                 <li><a href="{% url 'kontakt' %}">Kontakt admin</a></li>
             </ul>
         </div>
