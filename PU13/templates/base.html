@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
         <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+        <link rel="stylesheet" href="{% static 'css/profile.css' %}">
         {% block stylesheet %} {% endblock %}  <!-- HERE -->
     </head>
 
@@ -31,8 +32,7 @@
                     {% if user.is_authenticated %}
                     <div class="navbar-nav ml-auto">
                         <!--<span class="navbar-text"> {{ user.username }}: </span> -->
-                        <a class="nav-item nav-link" href="{%  url 'personal_feed:personal_feed' %}">Profil</a>
-                        <a class="nav-item nav-link active" href="{%  url 'arrangements:my_page' %}">Min side</a>
+                        <a class="nav-item nav-link" href="{%  url 'arrangements:my_page' %}">Profil</a>
                             <span class="navbar-text"> | </span>
                         <a class="nav-item nav-link active" href="{%  url 'logout' %}">Logg ut</a>
                     </div>
