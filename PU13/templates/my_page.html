@@ -1,54 +1,47 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
-{% load static %}
+
 {% block title %} Min side {% endblock %}
 
 
 {% block body %}
-<div id="wrapper">
-    {% if user.is_authenticated %}
-    {% include "includes/sidebar.html" %}
-    {% endif %}
-    <div class="strikk-profile" style="margin-bottom: 100px;">
-        <img align="left" class="strikk-image-lg" src="{% static "media/knitlarge.jpg" %}" alt="Profile image
-        example"/>
-        <img align="left" class="strikk-image-profile thumbnail" src="{% static "media/avatar.png" %}" alt="Profile
-        image example"/>
-        <div class="strikk-profile-text">
-            <h1 class="pb-2">{{ user.name }}</h1>
-            <p>
-                Brukernivå: {{ user.user_level }}
-                <br>
-                Fullførte utfordringer: {{ user.completed_challenges }}
-            </p>
-        </div>
+<div class="container px-20 pt-4 mb-4">
+    <h1 class="pb-3 pt-3">Min side</h1>
+
+    {% for message in messages %}
+    <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        </button>
+        {{ message }}
     </div>
+    {% endfor %}
 
-    <div id="page-content-wrapper">
+    <div class="accordion pt-3" id="accordionExample">
 
-        <div class="container px-20 pt-4 mb-4 ">
+        <div class="card">
 
-            {% for message in messages %}
-            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                </button>
-                {{ message }}
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                        Mine påmeldte utfordringer
+                    </button>
+                </h2>
             </div>
 
-            {% endfor %}
-
-            <h2 class="pt-4">Mine utfordringer</h2>
-            <table class="table table-hover">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">Utfordring</th>
-                    <th scope="col">Anbefalt brukernivå</th>
-                    <th scope="col">Opprettet</th>
-                    <th scope="col">Arrangør</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Utfordring</th>
+                                <th scope="col">Anbefalt brukernivå</th>
+                                <th scope="col">Opprettet</th>
+                                <th scope="col">Arrangør</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                            </tr>
                         </thead>
 
                         <tbody>
@@ -82,7 +75,23 @@
                         {% endfor %}
                         </tbody>
                     </table>
-            <h2 class="pt-4">Påmeldte strikkekvelder</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Mine påmeldte strikkekvelder
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
                     <table class="table table-hover">
                         <thead class="thead-light">
                             <tr>
@@ -121,9 +130,23 @@
                         {% endfor %}
                         </tbody>
                     </table>
-            {% if user.is_authenticated and user.is_Company%}
+                </div>
+            </div>
+        </div>
+        {% if user.is_authenticated and user.is_Company %}
+        <div class="card">
 
-            <h2 class="pt-4">Mine annonser</h2>
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Mine annonser
+                    </button>
+                </h2>
+            </div>
+
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                <div class="card-body">
                     <table class="table table-hover">
                         <thead class="thead-light">
                         <tr>
@@ -147,8 +170,11 @@
                         {% endfor %}
                         </tbody>
                     </table>
-            {% endif %}
-        </div>
+                </div>
             </div>
+
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock body %}
