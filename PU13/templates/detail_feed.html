@@ -21,9 +21,8 @@
                                 <!-- 'safe' enables us to render html if we enter it into a post-->
                                 <p class="card-text">{{ feed_post.content|safe }}</p>
                             </div>
-                            <div class="card-footer text-muted">Publisert {{ feed_post.date_published |date:"d. M. Y,
-                                H:i"}}
-                                av {{ user.name }}
+                            <div class="card-footer text-muted">Published at {{ feed_post.date_published }}
+                                by {{ user.name }}
                             </div>
                         </div>
                     </div>

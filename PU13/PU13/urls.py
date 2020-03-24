@@ -21,11 +21,11 @@ from django.views.generic.base import TemplateView
 
 from django.contrib import admin
 from django.urls import path, include
-from personal_feed.views import home_feed
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_feed, name="home"),
+    path('', TemplateView.as_view(template_name='home.html'), name='home'),
 
     path('bruker/', include(('accounts.urls', 'accounts'))),
     path('bruker/', include('django.contrib.auth.urls')),
