@@ -9,7 +9,7 @@
         {% if user.is_authenticated %}
             {% if user.is_Company %}
                 <h4>Du er logget inn som en bedrift</h4>
-            {% elif 'admin' in user.username %}
+            {% elif user.is_superuser %}
                 <h4>Du er logget inn som admin</h4>
             {% else %}
                 <h4>Du er for tiden logget inn som en bruker</h4>
