@@ -8,16 +8,20 @@
         <!--Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
-                <li><a href="{% url 'arrangements:my_page' %}">Profil</a></li>
                  <li class="sidebar-brand">
                     <a href="{% url 'personal_feed:personal_feed' %}">
-                        Min feed
+                        {% if feed_post or knit or yarn or challenges %}
+                            Tilbake til feed
+                            {% else %}
+                            Min profil
+                        {% endif %}
                     </a>
                 </li>
                 <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
                 <li><a href="{% url 'chall' %}">Utfordringer</a></li>
                 <li><a href="{% url 'knit' %}">Strikkekveld</a></li>
                 <li><a href="{% url 'yarn' %}">Annonser </a></li>
+                <li><a href="{% url 'kontakt' %}">Kontakt admin</a></li>
             </ul>
         </div>
 {% endblock body %}
