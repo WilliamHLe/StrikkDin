@@ -1,7 +1,7 @@
-a, a:hover, a:focus {
-    color: inherit;
+#sidebar li a {
+    display: block;
     text-decoration: none;
-    transition: all 0.3s;
+    color: #999999;;
 }
 
 .navbar-btn {
@@ -20,7 +20,6 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-
     height: 80%;
     min-width: 250px;
     max-width: 250px;
@@ -52,6 +51,7 @@ a, a:hover, a:focus {
     color: #fff;
     background: #727778;
 }
+
 
 a[data-toggle="collapse"] {
     position: relative;
