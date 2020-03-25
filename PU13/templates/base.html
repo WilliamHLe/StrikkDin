@@ -59,6 +59,8 @@
         </div>
     </nav>
 
+    {% block body %} {% endblock %}
+
 
     {% if user.is_authenticated %}
         <!-- Sidebar Holder -->
@@ -79,7 +81,9 @@
             {% block page_content %} {% endblock page_content %}
         </div>
     </div>
+
     </div>
+
 
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
