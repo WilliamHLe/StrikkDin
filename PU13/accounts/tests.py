@@ -26,7 +26,7 @@ class AccountsTesting(TestCase):
         # When you successfully reach a website, the status code will be 200 (as opposed to 404: Not Found)
         self.assertEquals(response.status_code, 200)
         # Checking to make sure we've been redirected to the home page
-        self.assertTemplateUsed(response, "home.html")
+        self.assertTemplateUsed(response, "my_page.html")
 
     def test_register_new_user(self):
         # self.assertFalse(self.client.login(username='ronzay_5', password='ronzay666'))
