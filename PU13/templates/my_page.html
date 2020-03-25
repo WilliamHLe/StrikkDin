@@ -14,11 +14,11 @@
             {% else %}
             <h1 class="pb-2">{{ user.username }}</h1>
             {% endif %}
-            <p>
-                Brukernivå: {{ user.user_level }}
-                <br>
-                Fullførte utfordringer: {{ user.completed_challenges }}
-            </p>
+            <div class="d-flex flex-column bd-highlight mb-3">
+              <div class="p-2 bd-highlight">Brukernivå: {{ user.user_level }}</div>
+              <div class="p-2 bd-highlight">Fullførte utfordringer: {{ user.completed_challenges }}</div>
+            </div>
+
         </div>
     </div>
     {% for message in messages %}
@@ -30,7 +30,7 @@
 
     {% endfor %}
 
-    <h2 class="pt-4">Mine utfordringer</h2>
+    <h2 class="pt-2">Mine utfordringer</h2>
     <table class="table table-hover">
         <thead class="thead-light">
         <tr>
