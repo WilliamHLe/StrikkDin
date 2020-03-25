@@ -35,7 +35,7 @@
     {% else %}
             <!-- Dette vises i tilfellet brukeren ikke har opprettet noen posts enda-->
             <p> Hei {{ user.username }}, du har ikke noen innlegg enda. Opprett en
-                <a href="{% url 'personal_feed:create' %}"><span class="test">her.</span> </a></p>
+                <a href="{% url 'personal_feed:create' %}">her.</a></p>
         {% endif %}
     {% endif %}
 {% endblock %}
