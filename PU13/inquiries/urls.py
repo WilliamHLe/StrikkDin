@@ -1,7 +1,8 @@
 from django.urls import path
 
-from . import views
+from .views import home
 
+# Kobler viewet home til en URL og gir ID-en 'kontakt'.
 urlpatterns = [
-    path("kontakt/", views.home, name ="kontakt")
+    path("kontakt/", home, name ="kontakt")
 ]
