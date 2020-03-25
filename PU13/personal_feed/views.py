@@ -17,7 +17,7 @@ def home_feed(request):
         'feed': feed,
 
     }
-    return render(request, "personal_feed.html", context)
+    return render(request, "home.html", context)
 
 
 # Rendering the main feed page
