@@ -75,6 +75,7 @@ ul ul a {
     padding: 30px;
     min-height: 10vh;
     transition: all 0.3s;
+    margin-top: -55px;
 }
 
 #sidebarCollapse {
