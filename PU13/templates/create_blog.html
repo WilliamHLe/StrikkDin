@@ -2,43 +2,26 @@
 
 {% load widget_tweaks %}
 
-{% block body %}
-    <!-- Our sidebar, yet again-->
-    <div id="wrapper">
-    {% if user.is_authenticated %}
-        {% include "includes/sidebar.html" %}
-    {% endif %}
+{% block page_content %}
+    <h1 class="pt-3 pb-3">Opprett et innlegg</h1>
 
-    <div id="page-content-wrapper">
-        <div class="container px-20 pt-4 mb-4">
-            <div class="row">
+    <form method="post" enctype="multipart/form-data">
 
-                <!--Divs are divided into 12 columns. "col-lg-12" will span 12 og 12 columns
-                    lg stands for large size, applies to screen size. -->
-                <div class="col-lg-12">
-                    <h1 class="pb-3 pt-3">Opprett et innlegg</h1>
-                    <form method="post" enctype="multipart/form-data">
+        <!--Ensures encryption-->
+        {% csrf_token %}
 
-                        <!--Ensures encryption-->
-                        {% csrf_token %}
-
-                        <!--Using django builtin form and widget-tweak to render the fields dynamically-->
-                        {% for field in form %}
-                            <div class="form-group">
-                                {{ field.label_tag }} {{ field.errors }}
-                                {% render_field field class="form-control" %}
-                            </div>
-                        {% endfor %}
-
-                        <!--Create submit button-->
-                        <button class="btn btn-success" type="submit">Post innlegget</button>
-                    </form>
-                </div>
+        <!--Using django builtin form and widget-tweak to render the fields dynamically-->
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }} {{ field.errors }}
+                {% render_field field class="form-control" %}
             </div>
-        </div>
+        {% endfor %}
 
-    </div>
-{% endblock body %}
+        <!--Create submit button-->
+        <button class="btn btn-success" type="submit">Post innlegget</button>
+    </form>
+{% endblock %}
 
 
 
