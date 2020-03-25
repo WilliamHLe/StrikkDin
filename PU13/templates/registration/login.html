@@ -3,9 +3,7 @@
 
 {% block title %} Logg inn {% endblock %}
 
-{% block body %}
-    <div class="container w-50 mb-4 pt-4">
-
+{% block page_content %}
         <!-- Looper gjennom Djangos innebygde meldinger. Formaterer og styler meldingen som blir gitt til brukeren.
         I dette tilfelle returnerer message.tags kun "success" slik at det bare er på vellykde registreringer man blir sendt til login-siden -->
 
@@ -24,5 +22,4 @@
             <button type="submit" class="btn btn-success">Logg inn</button>
         </form>
 
-    </div>
-{% endblock body%}
+{% endblock %}

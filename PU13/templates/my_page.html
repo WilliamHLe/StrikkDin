@@ -4,16 +4,10 @@
 {% block title %} Min side {% endblock %}
 
 
-{% block body %}
-<div id="wrapper">
-    {% if user.is_authenticated %}
-    {% include "includes/sidebar.html" %}
-    {% endif %}
+{% block page_content %}
     <div class="strikk-profile" style="margin-bottom: 100px;">
-        <img align="left" class="strikk-image-lg" src="{% static "media/knitlarge.jpg" %}" alt="Profile image
-        example"/>
-        <img align="left" class="strikk-image-profile thumbnail" src="{% static "media/avatar.png" %}" alt="Profile
-        image example"/>
+        <img align="left" class="strikk-image-lg" src="{% static "media/knitlarge.jpg" %}" alt="Profile image example"/>
+        <img align="left" class="strikk-image-profile thumbnail" src="{% static "media/avatar.png" %}" alt="Profile image example"/>
         <div class="strikk-profile-text">
             {% if user.name %}
             <h1 class="pb-2">{{ user.name }}</h1>
@@ -27,132 +21,124 @@
             </p>
         </div>
     </div>
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            </button>
+            {{ message }}
+        </div>
 
-    <div id="page-content-wrapper">
+    {% endfor %}
 
-        <div class="container px-20 pt-4 mb-4 ">
+    <h2 class="pt-4">Mine utfordringer</h2>
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Utfordring</th>
+            <th scope="col">Anbefalt brukernivå</th>
+            <th scope="col">Opprettet</th>
+            <th scope="col">Arrangør</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
 
-            {% for message in messages %}
-            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                </button>
-                {{ message }}
-            </div>
+        <tbody>
+        {% for challenge in mychallenges %}
+
+            <tr>
+                <th scope="row">{{ challenge.challenge_name }}</th>
+                <td>{{ challenge.rec_user_level }}</td>
+                <td>{{ challenge.created_at |date:"d. M. Y" }}</td>
+                <td>{{ challenge.created_by }}</td>
+                <td>
+                    <a href="{% url 'challenge_detail' challenge.pk %}"
+                       class="btn btn-primary">
+                        Les mer
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'complete' %}"
+                       class="btn btn-success">
+                        Fullført
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'delete' challenge.pk %}"
+                       class="btn btn-danger">
+                        Avmeld
+                    </a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+    <h2 class="pt-4">Påmeldte strikkekvelder</h2>
+    <table class="table table-hover">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">Strikkekveld</th>
+            <th scope="col">Dato</th>
+            <th scope="col">Tid</th>
+            <th scope="col">Opprettet</th>
+            <th scope="col">Arrangør</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for knit in myknit %}
+            <tr>
+                <th scope="row">{{ knit.knit_name }}</th>
+                <td>{{ knit.time |date:"d. M. Y" }}</td>
+                <td>{{ knit.time_start |time:"H:i" }}</td>
+                <td>{{ knit.created_at |date:"d. M. Y" }}</td>
+                <td>{{ knit.created_by }}</td>
+                <td>
+                    <a href="{% url 'knit_detail' knit.pk %}"
+                       class="btn btn-primary">
+                        Les mer
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_knit' knit.pk %}"
+                       class="btn btn-danger">
+                        Avmeld
+                    </a>
+                </td>
+            </tr>
+
+        {% endfor %}
+        </tbody>
+    </table>
+    {% if user.is_authenticated and user.is_Company %}
+
+        <h2 class="pt-4">Mine annonser</h2>
+        <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Annonse</th>
+                <th scope="col">Nettsted</th>
+                <th scope="col">Opprettet</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for ad in myads %}
+
+
+                <tr>
+                    <th scope="row">{{ ad.yarn_name }}</th>
+                    <td>{{ ad.url }}</td>
+                    <td>{{ ad.created_at |date:"d. M. Y" }}</td>
+                </tr>
 
             {% endfor %}
-
-            <h2 class="pt-4">Mine utfordringer</h2>
-            <table class="table table-hover">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">Utfordring</th>
-                    <th scope="col">Anbefalt brukernivå</th>
-                    <th scope="col">Opprettet</th>
-                    <th scope="col">Arrangør</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-                        </thead>
-
-                        <tbody>
-                        {% for challenge in mychallenges %}
-
-                        <tr>
-                            <th scope="row">{{ challenge.challenge_name }}</th>
-                            <td>{{ challenge.rec_user_level }}</td>
-                            <td>{{ challenge.created_at |date:"d. M. Y" }}</td>
-                            <td>{{ challenge.created_by }}</td>
-                            <td>
-                                <a href="{% url 'challenge_detail' challenge.pk %}"
-                                   class="btn btn-primary">
-                                    Les mer
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{% url 'complete'  %}"
-                                   class="btn btn-success">
-                                    Fullført
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{% url 'delete' challenge.pk %}"
-                                   class="btn btn-danger">
-                                    Avmeld
-                                </a>
-                            </td>
-                        </tr>
-
-                        {% endfor %}
-                        </tbody>
-                    </table>
-            <h2 class="pt-4">Påmeldte strikkekvelder</h2>
-                    <table class="table table-hover">
-                        <thead class="thead-light">
-                            <tr>
-                                <th scope="col">Strikkekveld</th>
-                                <th scope="col">Dato</th>
-                                <th scope="col">Tid</th>
-                                <th scope="col">Opprettet</th>
-                                <th scope="col">Arrangør</th>
-                                <th scope="col"></th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                        {% for knit in myknit %}
-                        <tr>
-                            <th scope="row">{{ knit.knit_name }}</th>
-                            <td>{{ knit.time |date:"d. M. Y" }}</td>
-                            <td>{{ knit.time_start |time:"H:i"}}</td>
-                            <td>{{ knit.created_at |date:"d. M. Y" }}</td>
-                            <td>{{ knit.created_by }}</td>
-                            <td>
-                                <a href="{% url 'knit_detail' knit.pk %}"
-                                   class="btn btn-primary">
-                                    Les mer
-                                </a>
-                            </td>
-                            <td>
-                                <a href="{% url 'delete_knit' knit.pk %}"
-                                   class="btn btn-danger">
-                                    Avmeld
-                                </a>
-                            </td>
-                        </tr>
-
-                        {% endfor %}
-                        </tbody>
-                    </table>
-            {% if user.is_authenticated and user.is_Company%}
-
-            <h2 class="pt-4">Mine annonser</h2>
-                    <table class="table table-hover">
-                        <thead class="thead-light">
-                        <tr>
-                            <th scope="col">Annonse</th>
-                            <th scope="col">Nettsted</th>
-                            <th scope="col">Opprettet</th>
-
-
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for ad in myads %}
-
-
-                        <tr>
-                            <th scope="row">{{ ad.yarn_name }}</th>
-                            <td>{{ ad.url }}</td>
-                            <td>{{ ad.created_at |date:"d. M. Y" }}</td>
-                        </tr>
-
-                        {% endfor %}
-                        </tbody>
-                    </table>
-            {% endif %}
-        </div>
-            </div>
-</div>
-{% endblock body %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
