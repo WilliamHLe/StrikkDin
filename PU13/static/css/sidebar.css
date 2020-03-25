@@ -16,11 +16,10 @@
     display: flex;
     width: 100%;
     perspective: 1500px;
-
 }
 
 #sidebar {
-    height: 80%;
+    height: 100%;
     min-width: 250px;
     max-width: 250px;
     background: #e9ecef;
@@ -51,7 +50,6 @@
     color: #fff;
     background: #727778;
 }
-
 
 a[data-toggle="collapse"] {
     position: relative;
