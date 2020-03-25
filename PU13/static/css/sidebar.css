@@ -53,12 +53,6 @@ a, a:hover, a:focus {
     background: #727778;
 }
 
-#sidebar ul li.active > a, a[aria-expanded="true"] {
-    color: #fff;
-    background: #575757;
-}
-
-
 a[data-toggle="collapse"] {
     position: relative;
 }
