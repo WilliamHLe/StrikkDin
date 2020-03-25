@@ -17,6 +17,7 @@
         <div id="page-content-wrapper">
 
             <div class="container px-20 pt-4 mb-4">
+
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="pb-3 pt-3">{{ user.username }}'s Feed</h1>
@@ -29,18 +30,20 @@
                                     </button>
                                     {{ message }}
                                 </div>
-                            {% endfor %}
+                        {% endfor %}
                         {% endif %}
                         {% if posts %}
-                            {% for post in posts %}
+                        {% for post in posts %}
 
-                                <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
-                                    <li class="list-group-item">{{ post }}</li>
-                                </a>
-                                <div class="card-footer text-muted">Publisert {{ feed_post.date_published }} av
-                                    {{ user.username }}
-                                </div>
-                            {% endfor %}
+                        <div class="py-3">
+                            <a href="{% url 'personal_feed:detail' post.slug %}" style="text-decoration: none;">
+                                <li class="list-group-item">{{ post }}</li>
+                            </a>
+                            <div class="card-footer text-muted">Publisert {{ feed_post.date_published }} av
+                                {{ user.username }}
+                            </div>
+                        </div>
+                        {% endfor %}
                         {% else %}
 
                             <!-- Dette vises i tilfellet brukeren ikke har opprettet noen posts enda-->
@@ -49,11 +52,8 @@
                         {% endif %}
                     </div>
                 </div>
-            </div><x></x>
+            </div>
         </div>
     </div>
 
-
 {% endblock body %}
-
-
