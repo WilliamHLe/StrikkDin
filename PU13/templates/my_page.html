@@ -15,7 +15,11 @@
         <img align="left" class="strikk-image-profile thumbnail" src="{% static "media/avatar.png" %}" alt="Profile
         image example"/>
         <div class="strikk-profile-text">
+            {% if user.name %}
             <h1 class="pb-2">{{ user.name }}</h1>
+            {% else %}
+            <h1 class="pb-2">{{ user.username }}</h1>
+            {% endif %}
             <p>
                 Brukernivå: {{ user.user_level }}
                 <br>
