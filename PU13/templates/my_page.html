@@ -5,6 +5,18 @@
 
 
 {% block page_content %}
+    <div class="strikk-profile" style="margin-bottom: 100px;">
+        <img align="left" class="strikk-image-lg" src="{% static "media/knitlarge.jpg" %}" alt="Profile image example"/>
+        <img align="left" class="strikk-image-profile thumbnail" src="{% static "media/avatar.png" %}" alt="Profile image example"/>
+        <div class="strikk-profile-text">
+            <h1 class="pb-2">{{ user.name }}</h1>
+            <p>
+                Brukernivå: {{ user.user_level }}
+                <br>
+                Fullførte utfordringer: {{ user.completed_challenges }}
+            </p>
+        </div>
+    </div>
     {% for message in messages %}
         <div class="alert {{ message.tags }} alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
