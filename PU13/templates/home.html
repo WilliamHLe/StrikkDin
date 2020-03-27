@@ -2,12 +2,8 @@
 {% block title %} StrikkDin {% endblock %}
 {% load static %}
 
-
-
 {% block page_content %}
     {% if user.is_authenticated %}
-
-
         <div class="container d-flex justify-content-center">
 
             <div class="card" style="width: 800px; min-height: 1250px">
@@ -56,7 +52,6 @@
     {% endif %}
 {% endblock page_content %}
 
-
 {% block body %}
     {% if not user.is_authenticated %}
         <div id="hero">
@@ -69,6 +64,6 @@
             </div>
         </div>
     {% endif %}
-{% endblock body %}
+{% endblock %}
 
 
