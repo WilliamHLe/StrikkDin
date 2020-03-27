@@ -9,9 +9,7 @@ from django.shortcuts import render, redirect
 #from django.urls import reverse
 
 from django.contrib import messages
-
-def home(request):
-    """
+"""
     Et eksempel på et ikke classed-based view som medfører mer koder for å håndtere en 'response' fra brukeren - brukerinput.
 
     Dersom den mottar en POST-request med data som brukeren har submitted.
@@ -34,23 +32,23 @@ def home(request):
     :param request: En HTTP-request fra brukeren.
     :return: 1. HTTP-response i form av prosessert HTML-fil ved at man blir redirecta til siden.
     """
-    if request.method == "POST":
-        form = SendMessageToAdmin(request.POST)
+def home(response):
+    if response.method == "POST":
+        form = SendMessageToAdmin(response.POST)
         if form.is_valid():
             a = form.cleaned_data["text_from"]
             t = form.cleaned_data["subject"]
             d = form.cleaned_data["description"]
             f = Inquiries(text_from=a, subject=t, description=d)
             f.save()
-            messages.success(request, 'Melding sendt!')
+            messages.success(response, 'Melding sendt!')
 
             response = redirect('kontakt')
             return response
         else:
-            messages.error(request, 'Fyll ut alle feltene!!')
+            messages.error(response, 'Fyll ut alle feltene!!')
 
     else:
         form = SendMessageToAdmin()
 
-    return render(request, "contactAdmin.html", {"form":form})
-
+    return render(response, "contact_admin.html", {"form": form})

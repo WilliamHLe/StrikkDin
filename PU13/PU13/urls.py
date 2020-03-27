@@ -15,17 +15,27 @@ Including another URLconf
 """
 from django.contrib import admin
 
+
 from django.urls import path, include
 from django.views.generic.base import TemplateView
 
+from django.contrib import admin
+from django.urls import path, include
+from personal_feed.views import home_feed
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    path('', home_feed, name="home"),
 
     path('bruker/', include(('accounts.urls', 'accounts'))),
     path('bruker/', include('django.contrib.auth.urls')),
 
     path('', include("inquiries.urls")),
     path('', include(('inquiries.urls', 'inquiries'))),
+
+    path('personal_feed/', include('personal_feed.urls')),
+
+    path('', include("arrangements.urls")),
+    path('', include(('arrangements.urls', 'arrangements'))),
 
 ]

@@ -21,6 +21,7 @@ class Inquiries(models.Model):
         """
         ordering = ['created_at']
 
+
     def __str__(self):
         """
         Metoden blir kalt på hver gang man bruker str(objekt).

@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import MyUserCreationForm, MyUserChangeForm
 from .models import CustomUser
 
-
+# Viser hvilke felter av modellen som skal vises i admin-siden
 class MyUserAdmin(UserAdmin):
     """
     UserAdmin er en Django-klasse som inneholder ferdig-implementerte attributter og funksjoner.
@@ -21,11 +21,11 @@ class MyUserAdmin(UserAdmin):
     add_form = MyUserCreationForm
     form = MyUserChangeForm
     model = CustomUser
-    list_display = ['username', 'name', 'user_level', 'is_Company']
+    list_display = ['username', 'name', 'user_level', 'is_Company', 'completed_challenges']
     fieldsets = UserAdmin.fieldsets + (
-            (None, {'fields': ('name', 'user_level', 'is_Company')}),
+        (None, {'fields': ('name', 'user_level', 'is_Company', 'completed_challenges')}),
     )  # this will allow to change these fields in admin module
-       #Fjernet is_User fra fieldsets og list_display
+#Fjernet is_User fra fieldsets og list_display
 
 """Kobler vår modell av brukeren (CustomUser) og Admin-klassen (MyUserAdmin) som utgjør Admin-panelet"""
 admin.site.register(CustomUser, MyUserAdmin)
