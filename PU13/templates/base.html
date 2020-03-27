@@ -58,30 +58,32 @@
             {% endif %}
         </div>
     </nav>
-    {% block body %} {% endblock %}
-
 
     {% if user.is_authenticated %}
         <!-- Sidebar Holder -->
         <div class="wrapper">
-        <nav id="sidebar">
-            <ul class="list-unstyled components">
-                <li><a href="{% url 'my_page' %}">Profil</a></li>
-                <li><a href="{% url 'personal_feed:personal_feed' %}">Min feed</a></li>
-                <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
-                <li><a href="{% url 'chall' %}">Utfordringer</a></li>
-                <li><a href="{% url 'knit' %}">Strikkekvelder</a></li>
-                <li><a href="{% url 'yarn' %}">Annonser</a></li>
-            </ul>
-        </nav>
-    {% endif %}
-    <div id="content">
+            <nav id="sidebar">
+                <ul class="list-unstyled components">
+                    <li><a href="{% url 'my_page' %}">Profil</a></li>
+                    <li><a href="{% url 'personal_feed:personal_feed' %}">Min feed</a></li>
+                    <li><a href="{% url 'personal_feed:create' %}">Opprett innlegg</a></li>
+                    <li><a href="{% url 'chall' %}">Utfordringer</a></li>
+                    <li><a href="{% url 'knit' %}">Strikkekvelder</a></li>
+                    <li><a href="{% url 'yarn' %}">Annonser</a></li>
+                </ul>
+            </nav>
+            <div id="content">
 
-        <div class="container pt-4 mb-4">
-            {% block page_content %} {% endblock page_content %}
+                <div class="container pt-4 mb-4">
+                    {% block page_content %} {% endblock page_content %}
+                </div>
+            </div>
         </div>
-    </div>
-    </div>
+    {% else %}
+        {% block body %}
+        {% endblock %}
+    {% endif %}
+
 
 
 
