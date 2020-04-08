@@ -23,9 +23,9 @@ For a more detailed guide on how to use the application, refer to our Wiki page:
 
 ## Technology/framework
 #### Built with:
-* Django
-* Bootstrap
-* SQLite
+* [Django](https://www.djangoproject.com): Python framework
+* [Bootstrap](https://getbootstrap.com): CSS framework
+* [SQLite](https://www.sqlite.org/index.html): Database
 
 ## Requirements
 
