@@ -1,4 +1,4 @@
-# <img src="/uploads/6aa59d6cfe7082f28fddd51caf52b729/Logo.png"  width="250">
+# <img src="PU13/static/media/Logo.png"  width="250">
 
 This is a group project for the course TDT4145 Programvareutvikling.
 The goal of this course is to immerse in Agile Methodology, and develop crucial skills in cooperation, project planning and source-code management. This includes learning
@@ -9,23 +9,34 @@ knitters and business owners can meet. This web application will allow users to 
 advertisement and share thoughts through a feed. Knitters will be able to participate in challenges and arrangements
 created by companies.
 
+
+## Features
+* Cross-platform
+* User authentication
+* Admin management platform
+
 ## Demo
 
 An example of the application:
 
-<img src="/uploads/50ea564f02a60604089dae480dbad7bc/Skjermbilde_2020-04-08_kl._00.54.28.png"  width="50%">
+<img src="PU13/static/media/readme.png"  width="50%">
 
-When logged in you will have access to a variety of functions.
+When logged in you will have access to a variety of functionalities.
 
-For a more detailed guide on how to use the application, refer to our Wiki page:
+## How to use
 
-[Link to User Manual](documentation)
+For a detailed guide on how to use the application, refer to our Wiki page:
+
+[User Manual](../wikis/page1)
 
 ## Technology/framework
 #### Built with:
-* [Django](https://www.djangoproject.com): Python framework
-* [Bootstrap](https://getbootstrap.com): CSS framework
-* [SQLite](https://www.sqlite.org/index.html): Database
+* [Django](https://www.djangoproject.com) - Python framework
+* [Bootstrap](https://getbootstrap.com) - CSS framework
+* [SQLite](https://www.sqlite.org/index.html) - Database
+
+#### Dependencies:
+* [django-widget-tweaks](https://pypi.org/project/django-widget-tweaks/)
 
 ## Requirements
 
@@ -66,8 +77,9 @@ $ source /venv/bin/activate
      $ python manage.py migrate
     ```
 
-   > You may have to change directory to PU13 before using the command over.
-   > `$ cd PU13`.
+   > You may have to change directory to PU13 before using the command over:
+   >
+   > `$ cd PU13`
 4. Run project:
 
     ```sh
