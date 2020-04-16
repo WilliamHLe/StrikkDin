@@ -1,12 +1,12 @@
 # <img src="PU13/static/media/Logo.png"  width="250">
 
 This is a group project for the course TDT4145 Programvareutvikling.
-The goal of this course is to immerse in Agile Methodology, and develop crucial skills in cooperation, project planning and source-code management. This includes learning
+The goal of this project is to immerse in Agile Methodology, and develop crucial skills in cooperation, project planning and source-code management. This includes learning
 to use Git and using Git-repository manager GitLab.
 
-Our job is to create a knit platform for our product owner. This platform is a community where
-knitters and business owners can meet. This web application will allow users to create arrangements, challenges,
-advertisement and share thoughts through a feed. Knitters will be able to participate in challenges and arrangements
+Our job is to create a knit platform for our product owner. This platform is a knitting network where
+knitters and corporates can meet. This web application will allow users to create arrangements, challenges,
+advertisement and share thoughts through a common feed. Knitters will be able to participate in challenges and arrangements
 created by companies.
 
 
@@ -44,13 +44,16 @@ To run the project, you must have Python 3.8 or later and Pip installed.
 
 ## Installation
 
-You should use virtual environment like [VirtualEnv](https://virtualenv.pypa.io/en/latest/installation.html) to isolate Python projects. This may help to prevent problems in the future.
+We recommend to use a virtual environment like [VirtualEnv](https://virtualenv.pypa.io/en/latest/installation.html) to isolate Python projects. This may help to prevent problems in the future.
 
 To activate VirtualEnv:
 
 ```sh
 $ source /venv/bin/activate
 ```
+
+
+### Clone and run project
 
 
 1. Use any IDE that supports Python and clone: 
@@ -78,8 +81,8 @@ $ source /venv/bin/activate
     ```
 
    > You may have to change directory to PU13 before using the command over:
-   >
-   > `$ cd PU13`
+   > This can be done by running: `$ cd PU13`
+   
 4. Run project:
 
     ```sh
