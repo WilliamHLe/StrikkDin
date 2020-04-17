@@ -80,7 +80,8 @@ $ source /venv/bin/activate
      $ python manage.py migrate
     ```
 
-   > You may have to change directory to PU13 before using the command over:
+   > You may have to change directory to PU13 before using the command over
+   >
    > This can be done by running: `$ cd PU13`
    
 4. Run project:
