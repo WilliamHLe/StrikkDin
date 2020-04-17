@@ -27,7 +27,7 @@ When logged in you will have access to a variety of functionalities.
 
 For a detailed guide on how to use the application, refer to our Wiki page:
 
-[User Manual](../wikis/page1)
+[User Manual](https://gitlab.stud.idi.ntnu.no/tdt4140-2020/13/-/wikis/Wiki-1:-Brukermanual)
 
 ## Technology/framework
 #### Built with:
