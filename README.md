@@ -40,7 +40,8 @@ For a detailed guide on how to use the application, refer to our Wiki page:
 
 ## Requirements
 
-To run the project, you must have Python 3.8 or later and Pip installed.
+To run the project, you must have Python 3.8 or later and [Pip](https://pypi.org/project/pip/
+) installed.
 
 ## Installation
 
