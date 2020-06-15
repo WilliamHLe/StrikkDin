@@ -1,4 +1,4 @@
-# <img src="PU13/static/media/Logo.png"  width="250">
+# <img src="static/media/Logo.png"  width="250">
 
 This is a group project for the course TDT4145 Programvareutvikling.
 The goal of this project is to immerse in Agile Methodology, and develop crucial skills in cooperation, project planning and source-code management. This includes learning
