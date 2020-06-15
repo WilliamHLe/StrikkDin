@@ -17,6 +17,9 @@ created by companies.
 
 ## Demo
 
+Live demo version can be found on:
+https://strikkdin.herokuapp.com/
+
 An example of the application:
 
 <img src="static/media/readme.png"  width="50%">
