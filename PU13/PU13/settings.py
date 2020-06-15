@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'accounts',
     'personal_feed',
     'arrangements',
-
+    'PU13'
     'widget_tweaks',
 ]
 
