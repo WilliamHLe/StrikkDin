@@ -5,5 +5,5 @@ test:
     image: python:3.8.1
     script:
       - pip install -r requirements.txt
-      - cd pu13
+      - cd PU13
       - python manage.py test
