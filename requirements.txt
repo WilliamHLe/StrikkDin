@@ -10,3 +10,5 @@ six==1.14.0
 sqlparse==0.3.0
 virtualenv==20.0.4
 whitenoise==5.1.0
+dj-database-url
+psycopg2
